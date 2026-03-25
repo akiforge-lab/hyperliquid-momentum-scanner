@@ -16,7 +16,7 @@ Coin names that contain ':' (e.g. xyz:AAPL) are sanitised to '_' in filenames.
 import json
 import logging
 import time
-
+from pathlib import Path
 from typing import Optional
 
 import pandas as pd
