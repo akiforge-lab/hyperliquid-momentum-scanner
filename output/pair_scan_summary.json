@@ -1,0 +1,31 @@
+{
+  "scan_timestamp": "2026-03-18T00:09:45.154106+00:00",
+  "timeframe": "1h",
+  "used_cache": false,
+  "pairs_configured": 21,
+  "pairs_computed": 20,
+  "pairs_skipped": 1,
+  "long_spread": 0,
+  "short_spread": 0,
+  "watch": 17,
+  "neutral": 3,
+  "invalid": 0,
+  "entry_zscore_threshold": 2.0,
+  "exit_zscore_threshold": 0.5,
+  "zscore_window_bars": 120,
+  "min_pair_closes": 100,
+  "half_life_range_hours": [
+    4,
+    168
+  ],
+  "skipped_pairs": [
+    {
+      "pair_id": "WIF-BONK",
+      "reason": "leg_b (BONK) missing from price data"
+    }
+  ],
+  "discovery_candidates_total": 595,
+  "discovery_auto_selected": 15,
+  "discovery_pinned": 5,
+  "discovery_excluded": 44
+}

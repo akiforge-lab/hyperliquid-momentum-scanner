@@ -1,0 +1,51 @@
+name: Daily Momentum Scan
+
+on:
+  schedule:
+    # 02:17 UTC daily — offset from the hour to avoid GitHub Actions load spikes
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to push the commit-back
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch the full default branch so we can push back cleanly
+          fetch-depth: 1
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run momentum scan (no cache)
+        # --no-cache forces a fresh fetch from the Hyperliquid API on every run.
+        # GitHub Actions runners are ephemeral — there is no persistent cache to
+        # reuse across runs, so --no-cache is both necessary and correct here.
+        run: python main.py --no-cache
+
+      - name: Commit updated output files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add output/
+
+          # Only commit if something actually changed; exit 0 if nothing to commit.
+          if git diff --cached --quiet; then
+            echo "No changes to output/ — skipping commit."
+          else
+            git commit -m "chore: daily scan $(date -u '+%Y-%m-%d')"
+            git push
+          fi

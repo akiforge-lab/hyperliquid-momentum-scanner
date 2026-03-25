@@ -1,0 +1,48 @@
+# ---------------------------------------------------------------------------
+# Hyperliquid Momentum Scanner — .gitignore
+#
+# COMMITTED:   output/   (daily scan results — the point of this repo)
+# NOT COMMITTED: data/   (ephemeral fetch cache — rebuilt on every run)
+# ---------------------------------------------------------------------------
+
+# Candle cache — rebuilt from the Hyperliquid API on every GHA run.
+# Never commit: large, binary-ish JSON, changes every day, adds no value in git history.
+data/candles/
+data/candles_1h/
+
+# Universe API response — informational, not source truth.
+# Commit if you want a history of HL listing changes; omit if you prefer clean history.
+data/universe.json
+
+# Keep the data/ directory itself trackable (for the .gitkeep below)
+!data/.gitkeep
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# ---------------------------------------------------------------------------
+# OS / editor
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.iml
