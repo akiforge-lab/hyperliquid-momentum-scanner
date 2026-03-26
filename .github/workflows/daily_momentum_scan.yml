@@ -2,8 +2,8 @@ name: Daily Momentum Scan
 
 on:
   schedule:
-    # 02:17 UTC daily — offset from the hour to avoid GitHub Actions load spikes
-    - cron: "17 2 * * *"
+    # TEMP VALIDATION: every 5 min — revert to "17 2 * * *" after confirmed
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
