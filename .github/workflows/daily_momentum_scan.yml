@@ -3,8 +3,7 @@ name: Daily Momentum Scan
 on:
   schedule:
     # 02:17 UTC daily — offset from the hour to avoid GitHub Actions load spikes
-    # scheduler re-sync: 2026-03-26
-    - cron: "*/5 * * * *"
+    - cron: "17 2 * * *"
   workflow_dispatch:
 
 permissions:
