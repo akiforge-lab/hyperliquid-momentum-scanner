@@ -1,50 +1,43 @@
 coin,category,source_tried,reason
-MATIC,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-RNDR,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-FTM,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-HPOS,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-RLB,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-UNIBOT,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-OX,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-FRIEND,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-SHIA,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-CYBER,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-BLZ,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-LOOM,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-OGN,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-RDNT,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-BNT,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-CANTO,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-REQ,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-ORBS,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-STG,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-STRAX,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-BADGER,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-ILV,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-NFTI,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-NTRN,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-PANDORA,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-PIXEL,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-AI,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-MYRO,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-LISTA,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-kDOGS,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-CATI,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-JELLY,no_price_data,hyperliquid-only,No data from Hyperliquid; Yahoo fallback disabled (--hyperliquid-only)
-MKR,insufficient_history,,Only 19 closes (need 100)
-OMNI,insufficient_history,,Only 39 closes (need 100)
-NEIROETH,insufficient_history,,Only 39 closes (need 100)
-AI16Z,insufficient_history,,Only 81 closes (need 100)
-LAUNCHCOIN,insufficient_history,,Only 69 closes (need 100)
-LIT,insufficient_history,,Only 95 closes (need 100)
-SKR,insufficient_history,,Only 64 closes (need 100)
-AZTEC,insufficient_history,,Only 43 closes (need 100)
-xyz:MU,insufficient_history,,Only 98 closes (need 100)
-xyz:RIVN,insufficient_history,,Only 72 closes (need 100)
-xyz:BABA,insufficient_history,,Only 71 closes (need 100)
-xyz:TSM,insufficient_history,,Only 52 closes (need 100)
-xyz:GOLD,insufficient_history,,Only 95 closes (need 100)
-xyz:SILVER,insufficient_history,,Only 91 closes (need 100)
-xyz:CL,insufficient_history,,Only 80 closes (need 100)
-xyz:NATGAS,insufficient_history,,Only 65 closes (need 100)
-xyz:COPPER,insufficient_history,,Only 72 closes (need 100)
+MATIC,no_price_data,MATIC-USD,No data from Hyperliquid or Yahoo Finance (tried symbol: MATIC-USD)
+RNDR,no_price_data,RNDR-USD,No data from Hyperliquid or Yahoo Finance (tried symbol: RNDR-USD)
+FTM,no_price_data,FTM-USD,No data from Hyperliquid or Yahoo Finance (tried symbol: FTM-USD)
+HPOS,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+RLB,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+UNIBOT,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+OX,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+FRIEND,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+SHIA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+CYBER,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+OGN,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+REQ,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+STG,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+NFTI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+NTRN,no_price_data,NTRN-USD,No data from Hyperliquid or Yahoo Finance (tried symbol: NTRN-USD)
+PANDORA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+PIXEL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+AI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+MYRO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+BRETT,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+LISTA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+kDOGS,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+CATI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+JELLY,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+MKR,insufficient_history,,Only 18 closes (need 100)
+CANTO,insufficient_history,,Only 95 closes (need 100)
+OMNI,insufficient_history,,Only 38 closes (need 100)
+NEIROETH,insufficient_history,,Only 38 closes (need 100)
+AI16Z,insufficient_history,,Only 80 closes (need 100)
+LAUNCHCOIN,insufficient_history,,Only 68 closes (need 100)
+LIT,insufficient_history,,Only 96 closes (need 100)
+SKR,insufficient_history,,Only 65 closes (need 100)
+AZTEC,insufficient_history,,Only 44 closes (need 100)
+xyz:MU,insufficient_history,,Only 99 closes (need 100)
+xyz:RIVN,insufficient_history,,Only 73 closes (need 100)
+xyz:BABA,insufficient_history,,Only 72 closes (need 100)
+xyz:TSM,insufficient_history,,Only 53 closes (need 100)
+xyz:GOLD,insufficient_history,,Only 96 closes (need 100)
+xyz:SILVER,insufficient_history,,Only 92 closes (need 100)
+xyz:CL,insufficient_history,,Only 81 closes (need 100)
+xyz:NATGAS,insufficient_history,,Only 66 closes (need 100)
+xyz:COPPER,insufficient_history,,Only 73 closes (need 100)
