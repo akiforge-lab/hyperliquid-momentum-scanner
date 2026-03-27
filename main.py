@@ -362,3 +362,7 @@ if __name__ == "__main__":
             verbose=args.verbose,
             strict_source=args.hyperliquid_only,
         )
+        # Run pair momentum after main scan.
+        # Always pass no_cache=False: run_scan() already cleared and rebuilt
+        # data/candles/ when --no-cache was set, so the cache is warm here.
+        run_pair_momentum_scan(no_cache=False, verbose=args.verbose)
