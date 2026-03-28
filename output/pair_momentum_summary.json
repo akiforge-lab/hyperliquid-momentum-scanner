@@ -1,7 +1,7 @@
 {
   "pairs_computed": 30,
-  "positive_score": 8,
-  "negative_score": 22,
+  "positive_score": 7,
+  "negative_score": 23,
   "timeframe": "1d",
   "slope_window_bars": 100,
   "min_bars": 100,

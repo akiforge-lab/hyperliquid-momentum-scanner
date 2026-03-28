@@ -18,26 +18,24 @@ PANDORA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Financ
 PIXEL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 AI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 MYRO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-BRETT,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 LISTA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 kDOGS,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 CATI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 JELLY,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-MKR,insufficient_history,,Only 18 closes (need 100)
-CANTO,insufficient_history,,Only 95 closes (need 100)
-OMNI,insufficient_history,,Only 38 closes (need 100)
-NEIROETH,insufficient_history,,Only 38 closes (need 100)
-AI16Z,insufficient_history,,Only 80 closes (need 100)
-LAUNCHCOIN,insufficient_history,,Only 68 closes (need 100)
-LIT,insufficient_history,,Only 96 closes (need 100)
-SKR,insufficient_history,,Only 65 closes (need 100)
-AZTEC,insufficient_history,,Only 44 closes (need 100)
-xyz:MU,insufficient_history,,Only 99 closes (need 100)
-xyz:RIVN,insufficient_history,,Only 73 closes (need 100)
-xyz:BABA,insufficient_history,,Only 72 closes (need 100)
-xyz:TSM,insufficient_history,,Only 53 closes (need 100)
-xyz:GOLD,insufficient_history,,Only 96 closes (need 100)
-xyz:SILVER,insufficient_history,,Only 92 closes (need 100)
-xyz:CL,insufficient_history,,Only 81 closes (need 100)
-xyz:NATGAS,insufficient_history,,Only 66 closes (need 100)
-xyz:COPPER,insufficient_history,,Only 73 closes (need 100)
+MKR,insufficient_history,,Only 17 closes (need 100)
+CANTO,insufficient_history,,Only 94 closes (need 100)
+OMNI,insufficient_history,,Only 37 closes (need 100)
+NEIROETH,insufficient_history,,Only 37 closes (need 100)
+AI16Z,insufficient_history,,Only 79 closes (need 100)
+LAUNCHCOIN,insufficient_history,,Only 67 closes (need 100)
+LIT,insufficient_history,,Only 97 closes (need 100)
+SKR,insufficient_history,,Only 66 closes (need 100)
+AZTEC,insufficient_history,,Only 45 closes (need 100)
+xyz:RIVN,insufficient_history,,Only 74 closes (need 100)
+xyz:BABA,insufficient_history,,Only 73 closes (need 100)
+xyz:TSM,insufficient_history,,Only 54 closes (need 100)
+xyz:GOLD,insufficient_history,,Only 97 closes (need 100)
+xyz:SILVER,insufficient_history,,Only 93 closes (need 100)
+xyz:CL,insufficient_history,,Only 82 closes (need 100)
+xyz:NATGAS,insufficient_history,,Only 67 closes (need 100)
+xyz:COPPER,insufficient_history,,Only 74 closes (need 100)
