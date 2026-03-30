@@ -497,6 +497,7 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
       <!-- Summary cards -->
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:20px">
         <div class="card blue"><div class="label">Pairs Scored</div><div class="value" id="pm-count">-</div></div>
+        <div class="card"><div class="label">Diversified</div><div class="value" id="pm-div-count">-</div></div>
         <div class="card"><div class="label">Window</div><div class="value" id="pm-window">-</div></div>
         <div class="card"><div class="label">Timeframe</div><div class="value" id="pm-tf">-</div></div>
       </div>
@@ -507,9 +508,23 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
         <span style="margin-left:6px;color:#9ca3af">Strength&nbsp;=&nbsp;annualized log-ratio slope &times; R&sup2;</span>
       </div>
 
+      <!-- View toggle -->
+      <div style="margin-bottom:10px;display:flex;gap:8px;align-items:center">
+        <span style="font-size:11px;color:var(--muted)">View:</span>
+        <button id="pm-btn-div" onclick="setPmView('diversified')"
+          style="padding:3px 12px;border-radius:4px;border:1px solid #3b82f6;background:#3b82f6;color:#fff;font-size:12px;cursor:pointer">
+          Diversified
+        </button>
+        <button id="pm-btn-raw" onclick="setPmView('raw')"
+          style="padding:3px 12px;border-radius:4px;border:1px solid #d1d5db;background:#fff;color:#374151;font-size:12px;cursor:pointer">
+          Raw (all 30)
+        </button>
+        <span id="pm-view-hint" style="font-size:11px;color:var(--muted)"></span>
+      </div>
+
       <!-- Results table -->
       <div class="panel">
-        <div class="panel-header" style="background:#eff6ff;color:var(--blue)">&#9670; PAIR MOMENTUM RANKINGS (Top 30)</div>
+        <div class="panel-header" style="background:#eff6ff;color:var(--blue)" id="pm-panel-header">&#9670; PAIR MOMENTUM RANKINGS</div>
         <table class="tbl">
           <thead><tr>
             <th>#</th><th>Trade</th>
@@ -960,26 +975,57 @@ async function runPairsScan() {
 // ---------------------------------------------------------------------------
 // Pair Momentum tab
 // ---------------------------------------------------------------------------
-function renderPairMom(data) {
-  const summary = data.summary || {};
-  document.getElementById('pm-count').textContent  = summary.pairs_computed   ?? '-';
-  document.getElementById('pm-window').textContent = summary.slope_window_bars ? summary.slope_window_bars + ' bars' : '-';
-  document.getElementById('pm-tf').textContent     = summary.timeframe         ?? '-';
+let _pmData    = null;   // full API response cached after first load
+let _pmView    = 'diversified';  // 'diversified' | 'raw'
 
-  let rows   = data.rows || [];
+function setPmView(view) {
+  _pmView = view;
+  // Toggle button styles
+  const btnDiv = document.getElementById('pm-btn-div');
+  const btnRaw = document.getElementById('pm-btn-raw');
+  const active   = 'padding:3px 12px;border-radius:4px;border:1px solid #3b82f6;background:#3b82f6;color:#fff;font-size:12px;cursor:pointer';
+  const inactive = 'padding:3px 12px;border-radius:4px;border:1px solid #d1d5db;background:#fff;color:#374151;font-size:12px;cursor:pointer';
+  btnDiv.style.cssText = view === 'diversified' ? active : inactive;
+  btnRaw.style.cssText = view === 'raw'         ? active : inactive;
+  if (_pmData) renderPairMom(_pmData);
+}
+
+function renderPairMom(data) {
+  _pmData = data;
+  const summary = data.summary || {};
+  document.getElementById('pm-count').textContent     = summary.pairs_computed  ?? '-';
+  document.getElementById('pm-div-count').textContent = summary.diversified_pairs != null
+    ? summary.diversified_pairs + ' pairs'
+    : '-';
+  document.getElementById('pm-window').textContent = summary.slope_window_bars
+    ? summary.slope_window_bars + ' bars' : '-';
+  document.getElementById('pm-tf').textContent = summary.timeframe ?? '-';
+
+  const isDiversified = _pmView === 'diversified';
+  let rows = (isDiversified ? (data.diversified_rows || []) : (data.rows || []));
+
+  const maxPerShort = summary.max_per_short ?? 2;
+  const maxPerLong  = summary.max_per_long  ?? 2;
+  const hint = isDiversified
+    ? `max ${maxPerShort} per short leg &bull; max ${maxPerLong} per long leg`
+    : 'all top 30 by raw |score|';
+  document.getElementById('pm-view-hint').innerHTML = hint;
+
+  const header = document.getElementById('pm-panel-header');
+  header.textContent = isDiversified
+    ? '\u25C6 PAIR MOMENTUM RANKINGS \u2014 Diversified (' + rows.length + ')'
+    : '\u25C6 PAIR MOMENTUM RANKINGS \u2014 Raw (Top 30)';
+
   const body = document.getElementById('pm-body');
   if (!rows.length) {
     body.innerHTML = '<tr class="empty-row"><td colspan="7">No results</td></tr>';
     return;
   }
-  // Sort by |momentum_score| descending so Strength column is always ordered.
   rows = [...rows].sort((a, b) => Math.abs(b.momentum_score) - Math.abs(a.momentum_score));
   body.innerHTML = rows.map((r, i) => {
     const tradeLabel  = r.trade_label  ?? r.display_pair ?? r.pair_id ?? '-';
     const displayPair = r.display_pair ?? r.pair_id ?? '';
     const pairHint    = displayPair ? `<span style="font-size:0.72em;color:var(--muted);display:block;font-weight:400">${displayPair}</span>` : '';
-    // Direction is encoded in trade_label / display_pair.
-    // Always show Strength and Trend % as positive magnitudes.
     const strength = r.momentum_score != null ? Math.abs(+r.momentum_score) : null;
     const trend    = r.slope_ann_pct  != null ? Math.abs(+r.slope_ann_pct)  : null;
     return `<tr>
@@ -1181,9 +1227,15 @@ def api_pair_momentum():
     summary_path = OUTPUT_DIR / "pair_momentum_summary.json"
     if not summary_path.exists():
         return jsonify({"no_data": True})
-    summary = _read_json(summary_path) or {}
-    rows    = _read_csv_rows(OUTPUT_DIR / "pair_momentum.csv")
-    return jsonify({"no_data": False, "summary": summary, "rows": rows})
+    summary          = _read_json(summary_path) or {}
+    rows             = _read_csv_rows(OUTPUT_DIR / "pair_momentum.csv")
+    diversified_rows = _read_csv_rows(OUTPUT_DIR / "pair_momentum_diversified.csv")
+    return jsonify({
+        "no_data":          False,
+        "summary":          summary,
+        "rows":             rows,
+        "diversified_rows": diversified_rows,
+    })
 
 
 _pair_momentum_scan_lock = threading.Lock()
