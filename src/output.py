@@ -21,6 +21,13 @@ from src.xyz_symbols import asset_type as xyz_asset_type, XYZ_UNIVERSE
 from src.paths import OUTPUT_DIR
 TOP_N = 10
 
+# Ranking display thresholds — stricter than the broad MIN_R2=0.5 used for
+# signal labelling in compute_momentum.py.  These only affect which assets
+# appear in top_longs.csv / top_shorts.csv.  all_rankings.csv and /hlcoin
+# are unaffected and continue to reflect the full computed dataset.
+RANKING_R2_LONG  = 0.7   # longs: solid trend fit required
+RANKING_R2_SHORT = 0.8   # shorts: higher conviction required (trend reversals are noisier)
+
 logger = logging.getLogger(__name__)
 
 
@@ -30,7 +37,7 @@ logger = logging.getLogger(__name__)
 
 def _top_longs(df: pd.DataFrame, n: int = TOP_N) -> pd.DataFrame:
     return (
-        df[df["signal"] == "LONG"]
+        df[(df["signal"] == "LONG") & (df["r2"] >= RANKING_R2_LONG)]
         .sort_values("momentum_score", ascending=False)
         .head(n)
         .reset_index(drop=True)
@@ -39,7 +46,7 @@ def _top_longs(df: pd.DataFrame, n: int = TOP_N) -> pd.DataFrame:
 
 def _top_shorts(df: pd.DataFrame, n: int = TOP_N) -> pd.DataFrame:
     return (
-        df[df["signal"] == "SHORT"]
+        df[(df["signal"] == "SHORT") & (df["r2"] >= RANKING_R2_SHORT)]
         .sort_values("momentum_score", ascending=True)   # most negative first
         .head(n)
         .reset_index(drop=True)
@@ -83,11 +90,11 @@ def print_results(
     print(sep)
 
     print(f"\nTOP {TOP_N} LONG CANDIDATES")
-    print("  (slope > 0, R2 > 0.5, price > 100-DMA)")
+    print(f"  (slope > 0, R2 >= {RANKING_R2_LONG}, price > 100-DMA)")
     print(_fmt_table(longs))
 
     print(f"\nTOP {TOP_N} SHORT CANDIDATES")
-    print("  (slope < 0, R2 > 0.5, price < 100-DMA)")
+    print(f"  (slope < 0, R2 >= {RANKING_R2_SHORT}, price < 100-DMA)")
     print(_fmt_table(shorts))
     print()
 
