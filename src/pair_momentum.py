@@ -28,6 +28,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from src.pair_config import MAX_PER_SHORT, MAX_PER_LONG
 from src.paths import OUTPUT_DIR
 
 MIN_BARS         = 100   # minimum aligned daily bars required (matches Momentum MIN_CLOSES)
@@ -159,28 +160,95 @@ def compute_pair_momentum(prices: dict[str, pd.Series]) -> pd.DataFrame:
 
 
 # ---------------------------------------------------------------------------
+# Diversified ranking
+# ---------------------------------------------------------------------------
+
+def diversify_pair_ranking(
+    df: pd.DataFrame,
+    max_per_short: int = MAX_PER_SHORT,
+    max_per_long: int = MAX_PER_LONG,
+    n: int = TOP_N,
+) -> pd.DataFrame:
+    """
+    Greedy diversity filter over the raw pair ranking.
+
+    Walk rows in descending |momentum_score| order.  Admit each pair only if
+    neither leg has already reached its per-leg cap, then stop when n pairs
+    are collected (or the input is exhausted).
+
+    The raw DataFrame is never modified.
+    """
+    if df.empty:
+        return df.copy()
+
+    short_counts: dict[str, int] = {}
+    long_counts:  dict[str, int] = {}
+    selected: list[int] = []
+
+    # df is already sorted by momentum_score descending; abs ordering is
+    # maintained because compute_pair_momentum() uses nlargest(TOP_N, "_abs")
+    # before sorting, so the strongest absolute scores come first.
+    by_abs = df.reindex(df["momentum_score"].abs().sort_values(ascending=False).index)
+
+    for idx, row in by_abs.iterrows():
+        la = row["long_asset"]
+        sa = row["short_asset"]
+        if (short_counts.get(sa, 0) < max_per_short and
+                long_counts.get(la, 0) < max_per_long):
+            selected.append(idx)
+            short_counts[sa] = short_counts.get(sa, 0) + 1
+            long_counts[la]  = long_counts.get(la, 0) + 1
+            if len(selected) >= n:
+                break
+
+    result = df.loc[selected].copy()
+    result.sort_values("momentum_score", ascending=False, inplace=True)
+    result.reset_index(drop=True, inplace=True)
+    return result
+
+
+# ---------------------------------------------------------------------------
 # Output
 # ---------------------------------------------------------------------------
 
 def save_pair_momentum(df: pd.DataFrame) -> dict:
-    """Write output/pair_momentum.csv and output/pair_momentum_summary.json."""
+    """
+    Write output files for pair momentum results.
+
+    Files written:
+      pair_momentum.csv             — raw top-N by |score|, unchanged
+      pair_momentum_diversified.csv — greedy diversity-filtered ranking
+      pair_momentum_summary.json    — metadata for both
+    """
     OUTPUT_DIR.mkdir(exist_ok=True)
 
-    csv_path = OUTPUT_DIR / "pair_momentum.csv"
-    df.to_csv(csv_path, index=False)
+    # Raw ranking — never modified
+    df.to_csv(OUTPUT_DIR / "pair_momentum.csv", index=False)
     print(f"  pair_momentum.csv ({len(df)} pairs)", flush=True)
+
+    # Diversified ranking
+    div_df = diversify_pair_ranking(df)
+    div_df.to_csv(OUTPUT_DIR / "pair_momentum_diversified.csv", index=False)
+    print(
+        f"  pair_momentum_diversified.csv ({len(div_df)} pairs, "
+        f"max {MAX_PER_SHORT} per short leg / max {MAX_PER_LONG} per long leg)",
+        flush=True,
+    )
 
     n_pos = int((df["momentum_score"] > 0).sum()) if not df.empty else 0
     n_neg = int((df["momentum_score"] < 0).sum()) if not df.empty else 0
 
     summary = {
-        "pairs_computed":    len(df),
-        "positive_score":    n_pos,
-        "negative_score":    n_neg,
-        "timeframe":         TIMEFRAME,
-        "slope_window_bars": SLOPE_WINDOW,
-        "min_bars":          MIN_BARS,
-        "top_n":             TOP_N,
+        "pairs_computed":      len(df),
+        "positive_score":      n_pos,
+        "negative_score":      n_neg,
+        "diversified_pairs":   len(div_df),
+        "max_per_short":       MAX_PER_SHORT,
+        "max_per_long":        MAX_PER_LONG,
+        "timeframe":           TIMEFRAME,
+        "slope_window_bars":   SLOPE_WINDOW,
+        "min_bars":            MIN_BARS,
+        "top_n":               TOP_N,
     }
     json_path = OUTPUT_DIR / "pair_momentum_summary.json"
     with open(json_path, "w", encoding="utf-8") as fh:
