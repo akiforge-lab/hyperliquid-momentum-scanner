@@ -114,6 +114,52 @@ PINNED_PAIRS: list[dict] = [
 ]
 
 # ---------------------------------------------------------------------------
+# Cross-asset xyz: allowlist for pair momentum.
+# ---------------------------------------------------------------------------
+# Only symbols with >= 100 confirmed HL daily closes are included.
+# These participate in pair momentum alongside crypto, generating crypto/xyz
+# cross-asset pairs (e.g. BTC vs xyz:XYZ100).
+#
+# NOTE: xyz:QQQ does NOT exist on Hyperliquid.
+#   xyz:XYZ100 is HL's Nasdaq-100 proxy (~$25k HL price; 150 closes).
+#   It maps to ^NDX on Yahoo Finance.  It is NOT the same instrument as QQQ
+#   (QQQ ~$500, ^NDX ~$22k, xyz:XYZ100 ~$25k) but tracks the same index.
+#   Surface this in UI/commands as "XYZ100 (NDX proxy)" so users are aware.
+#
+# To add more symbols: verify >= 100 HL daily closes in xyz_debug.csv first.
+CROSS_ASSET_ELIGIBLE: list[str] = [
+    "xyz:XYZ100",  # Nasdaq-100 proxy — closest available to QQQ/NDX on HL
+    "xyz:AAPL",    # Apple
+    "xyz:NVDA",    # NVIDIA — high crypto correlation during AI cycles
+    "xyz:TSLA",    # Tesla — historically correlated with risk-on crypto
+    "xyz:MSFT",    # Microsoft
+    "xyz:AMZN",    # Amazon
+    "xyz:META",    # Meta
+    "xyz:GOOGL",   # Alphabet
+    "xyz:COIN",    # Coinbase — direct crypto-equity bridge
+]
+
+# Human-readable display names for cross-asset symbols.
+# Used by UI/Telegram output to clarify proxy relationships.
+CROSS_ASSET_DISPLAY_NAMES: dict[str, str] = {
+    "xyz:XYZ100": "XYZ100 (NDX proxy)",
+    "xyz:AAPL":   "AAPL",
+    "xyz:NVDA":   "NVDA",
+    "xyz:TSLA":   "TSLA",
+    "xyz:MSFT":   "MSFT",
+    "xyz:AMZN":   "AMZN",
+    "xyz:META":   "META",
+    "xyz:GOOGL":  "GOOGL",
+    "xyz:COIN":   "COIN",
+}
+
+
+def get_cross_asset_universe() -> list[str]:
+    """Return the curated xyz: symbol allowlist for cross-asset pair momentum."""
+    return list(CROSS_ASSET_ELIGIBLE)
+
+
+# ---------------------------------------------------------------------------
 # Deny lists — hard exclusions.
 # ---------------------------------------------------------------------------
 DENYLIST_SYMBOLS: set[str] = set()
