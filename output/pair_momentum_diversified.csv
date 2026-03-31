@@ -1,0 +1,9 @@
+pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
+AR-RENDER,RENDER,AR,RENDER-AR,Long RENDER / Short AR,-249.36,0.9022,-224.9697,221,1d
+STRK-xyz:NVDA,xyz:NVDA,STRK,xyz:NVDA-STRK,Long xyz:NVDA / Short STRK,-259.89,0.8915,-231.6918,140,1d
+STRK-xyz:XYZ100,xyz:XYZ100,STRK,xyz:XYZ100-STRK,Long xyz:XYZ100 / Short STRK,-260.31,0.906,-235.8478,170,1d
+APE-xyz:NVDA,xyz:NVDA,APE,xyz:NVDA-APE,Long xyz:NVDA / Short APE,-267.05,0.8953,-239.0723,140,1d
+APE-xyz:XYZ100,xyz:XYZ100,APE,xyz:XYZ100-APE,Long xyz:XYZ100 / Short APE,-267.47,0.9096,-243.2992,170,1d
+AR-TAO,TAO,AR,TAO-AR,Long TAO / Short AR,-279.45,0.8899,-248.6752,221,1d
+OP-TAO,TAO,OP,TAO-OP,Long TAO / Short OP,-346.97,0.8095,-280.8764,221,1d
+OP-RENDER,RENDER,OP,RENDER-OP,Long RENDER / Short OP,-316.88,0.9008,-285.4527,221,1d
