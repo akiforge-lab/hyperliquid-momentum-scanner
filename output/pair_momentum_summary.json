@@ -1,7 +1,7 @@
 {
   "pairs_computed": 30,
-  "positive_score": 4,
-  "negative_score": 26,
+  "positive_score": 1,
+  "negative_score": 29,
   "diversified_pairs": 7,
   "max_per_short": 2,
   "max_per_long": 2,
