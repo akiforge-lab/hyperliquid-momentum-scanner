@@ -254,6 +254,7 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
 <header>
   <h1><span>Hyperliquid</span> Momentum Scanner</h1>
   <span id="timestamp"></span>
+  <span id="auto-scan-status" style="font-size:11px;color:var(--muted);margin-left:4px"></span>
   <span id="scan-mode" style="font-size:11px;padding:3px 8px;border-radius:4px;display:none"></span>
   <button id="scan-btn" onclick="runScan()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1083,10 +1084,70 @@ async function runPairMomScan() {
 }
 
 // ---------------------------------------------------------------------------
-// Initial load
+// Auto-scan
+// ---------------------------------------------------------------------------
+const AUTO_SCAN_MS   = 6 * 60 * 60 * 1000;  // full scan every 6 hours
+const AUTO_POLL_MS   = 60 * 1000;            // refresh display every 1 min
+
+let _nextScanAt      = null;
+let _autoScanRunning = false;
+
+function _fmtCountdown(ms) {
+  if (ms <= 0) return 'now';
+  const h = Math.floor(ms / 3_600_000);
+  const m = Math.floor((ms % 3_600_000) / 60_000);
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
+
+function _updateAutoStatus(label) {
+  const el = document.getElementById('auto-scan-status');
+  if (el) el.textContent = label;
+}
+
+async function _triggerAutoScan() {
+  if (_autoScanRunning) return;
+  _autoScanRunning = true;
+  _updateAutoStatus('⟳ scanning…');
+  const opts = { method: 'POST', headers: {'Content-Type': 'application/json'},
+                 body: JSON.stringify({no_cache: false}) };
+  try {
+    await fetch('/api/scan', opts);               // waits until scan finishes
+    await fetch('/api/pair-momentum/scan', opts); // then pair momentum
+    await loadData();
+    if (pairMomLoaded) await loadPairMomData();   // preserves _pmView state
+  } catch(e) {
+    console.error('Auto-scan failed', e);
+  } finally {
+    _autoScanRunning = false;
+  }
+}
+
+function _scheduleNextScan() {
+  _nextScanAt = Date.now() + AUTO_SCAN_MS;
+  setTimeout(async () => {
+    await _triggerAutoScan();
+    _scheduleNextScan();
+  }, AUTO_SCAN_MS);
+}
+
+function _startAutoScan() {
+  _scheduleNextScan();
+  // Lightweight display poll — re-reads output files, doesn't run scan
+  setInterval(async () => {
+    if (!_autoScanRunning) {
+      await loadData();
+      if (pairMomLoaded) await loadPairMomData();
+    }
+    const remaining = _nextScanAt - Date.now();
+    _updateAutoStatus(`next scan in ${_fmtCountdown(remaining)}`);
+  }, AUTO_POLL_MS);
+}
+
 // ---------------------------------------------------------------------------
 // Initial load
+// ---------------------------------------------------------------------------
 loadData();
+_startAutoScan();
 </script>
 </body>
 </html>
