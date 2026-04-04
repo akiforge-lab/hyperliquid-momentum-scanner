@@ -174,8 +174,8 @@ MIN_DISCOVERY_BARS   = 100   # minimum aligned 1h bars required
 
 # Diversified ranking limits — applied to pair_momentum_diversified.csv only.
 # Raw pair_momentum.csv is never affected.
-MAX_PER_SHORT = 2   # max times the same asset may appear as the short leg
-MAX_PER_LONG  = 2   # max times the same asset may appear as the long leg
+MAX_PER_SHORT = 1   # max times the same asset may appear as the short leg
+MAX_PER_LONG  = 1   # max times the same asset may appear as the long leg
 
 
 # ---------------------------------------------------------------------------
