@@ -29,7 +29,7 @@ from src.fetch_universe import fetch_universe
 from src.fetch_prices import fetch_all_prices, fetch_all_prices_hourly, _coin_to_filename
 from src.compute_momentum import compute_momentum, MIN_CLOSES
 from src.output import print_results, save_results
-from src.pair_config import PINNED_PAIRS, get_discovery_universe, get_cross_asset_universe
+from src.pair_config import PINNED_PAIRS, get_discovery_universe
 from src.pair_discovery import discover_pairs
 from src.pair_metrics import compute_pair_metrics, TIMEFRAME as PAIRS_TIMEFRAME
 from src.pair_signals import compute_pair_signals
@@ -249,86 +249,38 @@ def run_pair_momentum_scan(
     DAILY_CACHE_DIR.mkdir(parents=True, exist_ok=True)
     OUTPUT_DIR.mkdir(exist_ok=True)
 
-    discovery_coins = get_discovery_universe()
-    n_coins = len(discovery_coins)
-    n_pairs = n_coins * (n_coins - 1) // 2
+    all_coins = fetch_universe()   # full HL perps + xyz: (same source as run_scan)
+    n_coins = len(all_coins)
+    n_pairs_max = n_coins * (n_coins - 1) // 2
     print(
         f"Pair Momentum 1/2  Fetching daily candles for {n_coins} symbols "
-        f"(up to {n_pairs} candidate pairs)...",
+        f"(up to {n_pairs_max} candidate pairs)...",
         flush=True,
     )
 
-    prices, failures, _xyz_diag = fetch_all_prices(discovery_coins, no_cache=no_cache)
+    prices, failures, _xyz_diag = fetch_all_prices(all_coins, no_cache=no_cache)
     missing_coins = [f["coin"] for f in failures]
     if missing_coins:
         print(f"                   No daily data for: {', '.join(missing_coins)}", flush=True)
+    n_crypto = sum(1 for s in prices if not s.startswith("xyz:"))
+    n_xyz    = sum(1 for s in prices if s.startswith("xyz:"))
     print(
-        f"                   Got data for {len(prices)}/{n_coins} symbols",
+        f"                   Got data for {len(prices)}/{n_coins} symbols "
+        f"({n_crypto} crypto + {n_xyz} xyz)",
         flush=True,
     )
 
-    # Fetch cross-asset (xyz:) symbols and merge into prices.
-    # Cache is already warm from run_scan(), so no_cache=False is correct here.
-    cross_asset_coins = get_cross_asset_universe()
-    cross_prices: dict = {}
-    cross_failures: list = []
-    if cross_asset_coins:
-        print(
-            f"                   Fetching {len(cross_asset_coins)} cross-asset "
-            f"(xyz:) symbols for pair momentum...",
-            flush=True,
-        )
-        cross_prices, cross_failures, _ = fetch_all_prices(
-            cross_asset_coins, no_cache=False
-        )
-        prices.update(cross_prices)
-        n_cross_ok = len(cross_prices)
-        n_cross_fail = len(cross_failures)
-        print(
-            f"                   Cross-asset: {n_cross_ok} included, "
-            f"{n_cross_fail} excluded",
-            flush=True,
-        )
-
-    # Write pair_universe_debug.csv so analysts can see which symbols were
-    # included/excluded and why, without having to inspect log output.
+    # Write pair_universe_debug.csv — single loop, kind inferred from symbol prefix.
     _failures_map = {f["coin"]: f.get("reason", "no_data") for f in failures}
-    _cross_failures_map = {f["coin"]: f.get("reason", "no_data") for f in cross_failures}
     _debug_rows = []
-    for sym in discovery_coins:
+    for sym in all_coins:
+        kind = "cross_asset" if sym.startswith("xyz:") else "crypto"
         if sym in prices:
-            _debug_rows.append({
-                "symbol":  sym,
-                "status":  "included",
-                "bars":    len(prices[sym]),
-                "reason":  "",
-                "kind":    "crypto",
-            })
+            _debug_rows.append({"symbol": sym, "status": "included",
+                                 "bars": len(prices[sym]), "reason": "", "kind": kind})
         else:
-            _debug_rows.append({
-                "symbol":  sym,
-                "status":  "excluded",
-                "bars":    0,
-                "reason":  _failures_map.get(sym, "no_data"),
-                "kind":    "crypto",
-            })
-    for sym in cross_asset_coins:
-        if sym in prices:
-            _debug_rows.append({
-                "symbol":  sym,
-                "status":  "included",
-                "bars":    len(prices[sym]),
-                "reason":  "",
-                "kind":    "cross_asset",
-            })
-        else:
-            _debug_rows.append({
-                "symbol":  sym,
-                "status":  "excluded",
-                "bars":    0,
-                "reason":  _cross_failures_map.get(sym, "no_data"),
-                "kind":    "cross_asset",
-            })
+            _debug_rows.append({"symbol": sym, "status": "excluded", "bars": 0,
+                                 "reason": _failures_map.get(sym, "no_data"), "kind": kind})
     pd.DataFrame(_debug_rows).to_csv(OUTPUT_DIR / "pair_universe_debug.csv", index=False)
     print(
         f"                   pair_universe_debug.csv  "
@@ -340,7 +292,7 @@ def run_pair_momentum_scan(
     print(
         f"Pair Momentum 2/2  Computing daily momentum scores for "
         f"{n_syms*(n_syms-1)//2} pairs "
-        f"({n_syms} symbols: {len(prices)-len(cross_prices)} crypto + {len(cross_prices)} xyz)...",
+        f"({n_syms} symbols: {n_crypto} crypto + {n_xyz} xyz)...",
         flush=True,
     )
     df = compute_pair_momentum(prices)

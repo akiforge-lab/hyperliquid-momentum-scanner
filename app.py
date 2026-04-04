@@ -330,6 +330,22 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
     <!-- Missing symbols -->
     <div class="panel" id="missing-panel">
       <div class="panel-header miss">&#9888; MISSING / EXCLUDED SYMBOLS</div>
+      <!-- no_price_data: collapsible summary row -->
+      <div style="padding:8px 16px 6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px">
+        <span style="font-size:12px;color:var(--muted)">no_price_data: <strong id="no-price-count">-</strong></span>
+        <button id="no-price-toggle" onclick="toggleNoPrice()"
+          style="font-size:11px;padding:1px 8px;border:1px solid var(--border);border-radius:3px;background:var(--panel);color:var(--muted);cursor:pointer">
+          show &#9660;
+        </button>
+        <span style="font-size:11px;color:var(--muted)">(inactive/zombie perps — no candle data on HL)</span>
+      </div>
+      <div id="no-price-section" style="display:none">
+        <table class="tbl">
+          <thead><tr><th>Coin</th><th>Category</th><th>Reason</th></tr></thead>
+          <tbody id="no-price-body"></tbody>
+        </table>
+      </div>
+      <!-- insufficient_history: always visible -->
       <table class="tbl">
         <thead><tr>
           <th>Coin</th><th>Category</th><th>Reason</th>
@@ -504,7 +520,7 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
       </div>
 
       <div style="margin-bottom:8px;font-size:11px;color:var(--muted)">
-        Strongest relative momentum pairs &bull; daily candles &bull; 100-bar regression window &bull; top 30
+        Strongest relative momentum pairs &bull; daily candles &bull; 100-bar regression window &bull; top <span id="pm-top-n">-</span>
         &nbsp;<span style="padding:2px 6px;background:#ede9fe;color:#7c3aed;border-radius:3px;border:1px solid #c4b5fd">1d candles</span>
         <span style="margin-left:6px;color:#9ca3af">Strength&nbsp;=&nbsp;annualized log-ratio slope &times; R&sup2;</span>
       </div>
@@ -518,7 +534,7 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
         </button>
         <button id="pm-btn-raw" onclick="setPmView('raw')"
           style="padding:3px 12px;border-radius:4px;border:1px solid #d1d5db;background:#fff;color:#374151;font-size:12px;cursor:pointer">
-          Raw (all 30)
+          Raw (all <span id="pm-raw-btn-n">-</span>)
         </button>
         <span id="pm-view-hint" style="font-size:11px;color:var(--muted)"></span>
       </div>
@@ -601,16 +617,22 @@ function render(data) {
     ? allRows.map((r, i) => tradeRow(r, i+1)).join('')
     : '<tr class="empty-row"><td colspan="6">No momentum data — run a scan</td></tr>';
 
-  // Missing table
-  const missingBody = document.getElementById('missing-body');
+  // Missing table — split no_price_data (collapsible) vs insufficient_history (always shown)
   const missing = (data.missing || []);
-  missingBody.innerHTML = missing.length
-    ? missing.map(r => `<tr>
-        <td class="coin">${r.coin}</td>
-        <td class="src">${r.category || ''}</td>
-        <td style="color:var(--muted);font-size:12px">${r.reason || ''}</td>
-      </tr>`).join('')
-    : '<tr class="empty-row"><td colspan="3">All symbols resolved</td></tr>';
+  const noPrice  = missing.filter(r => r.category === 'no_price_data');
+  const insuffHist = missing.filter(r => r.category !== 'no_price_data');
+  const mkRow = r => `<tr>
+      <td class="coin">${r.coin}</td>
+      <td class="src">${r.category || ''}</td>
+      <td style="color:var(--muted);font-size:12px">${r.reason || ''}</td>
+    </tr>`;
+  document.getElementById('no-price-count').textContent = noPrice.length;
+  document.getElementById('no-price-body').innerHTML = noPrice.length
+    ? noPrice.map(mkRow).join('') : '';
+  const missingBody = document.getElementById('missing-body');
+  missingBody.innerHTML = insuffHist.length
+    ? insuffHist.map(mkRow).join('')
+    : '<tr class="empty-row"><td colspan="3">No insufficient-history symbols</td></tr>';
 
   // xyz: score rankings table
   const xyzRankRows = [...(data.xyz_rankings || [])]
@@ -979,6 +1001,14 @@ async function runPairsScan() {
 let _pmData    = null;   // full API response cached after first load
 let _pmView    = 'diversified';  // 'diversified' | 'raw'
 
+function toggleNoPrice() {
+  const sec = document.getElementById('no-price-section');
+  const btn = document.getElementById('no-price-toggle');
+  const hidden = sec.style.display === 'none';
+  sec.style.display = hidden ? 'block' : 'none';
+  btn.innerHTML = hidden ? 'hide &#9650;' : 'show &#9660;';
+}
+
 function setPmView(view) {
   _pmView = view;
   // Toggle button styles
@@ -1005,17 +1035,19 @@ function renderPairMom(data) {
   const isDiversified = _pmView === 'diversified';
   let rows = (isDiversified ? (data.diversified_rows || []) : (data.rows || []));
 
-  const maxPerShort = summary.max_per_short ?? 2;
-  const maxPerLong  = summary.max_per_long  ?? 2;
+  const topN = summary.top_n ?? '?';
+  document.getElementById('pm-top-n').textContent    = topN;
+  document.getElementById('pm-raw-btn-n').textContent = topN;
+
   const hint = isDiversified
-    ? `max ${maxPerShort} per short leg &bull; max ${maxPerLong} per long leg`
-    : 'all top 30 by raw |score|';
+    ? 'each symbol appears at most once'
+    : `all top ${topN} by raw |score|`;
   document.getElementById('pm-view-hint').innerHTML = hint;
 
   const header = document.getElementById('pm-panel-header');
   header.textContent = isDiversified
     ? '\u25C6 PAIR MOMENTUM RANKINGS \u2014 Diversified (' + rows.length + ')'
-    : '\u25C6 PAIR MOMENTUM RANKINGS \u2014 Raw (Top 30)';
+    : `\u25C6 PAIR MOMENTUM RANKINGS \u2014 Raw (Top ${topN})`;
 
   const body = document.getElementById('pm-body');
   if (!rows.length) {

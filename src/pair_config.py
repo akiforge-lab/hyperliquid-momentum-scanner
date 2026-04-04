@@ -172,10 +172,8 @@ MAX_DISCOVERED_PAIRS = 15    # top N auto-discovered pairs kept for the scan
 MIN_DISCOVERY_CORR   = 0.40  # minimum corr_168 for a pair to enter candidates
 MIN_DISCOVERY_BARS   = 100   # minimum aligned 1h bars required
 
-# Diversified ranking limits — applied to pair_momentum_diversified.csv only.
-# Raw pair_momentum.csv is never affected.
-MAX_PER_SHORT = 1   # max times the same asset may appear as the short leg
-MAX_PER_LONG  = 1   # max times the same asset may appear as the long leg
+# Diversified ranking: each symbol may appear at most once across all admitted
+# pairs (regardless of long/short role).  Raw pair_momentum.csv is unaffected.
 
 
 # ---------------------------------------------------------------------------

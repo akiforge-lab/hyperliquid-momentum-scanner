@@ -28,13 +28,12 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from src.pair_config import MAX_PER_SHORT, MAX_PER_LONG
 from src.paths import OUTPUT_DIR
 
 MIN_BARS         = 100   # minimum aligned daily bars required (matches Momentum MIN_CLOSES)
 SLOPE_WINDOW     = 100   # regression window in days (matches Momentum scanner)
 TRADING_DAYS     = 252   # annualisation factor (matches compute_momentum._annualise)
-TOP_N            = 30    # keep top N pairs by |momentum_score|
+TOP_N            = 50    # keep top N pairs by |momentum_score|
 TIMEFRAME        = "1d"
 logger     = logging.getLogger(__name__)
 
@@ -165,39 +164,33 @@ def compute_pair_momentum(prices: dict[str, pd.Series]) -> pd.DataFrame:
 
 def diversify_pair_ranking(
     df: pd.DataFrame,
-    max_per_short: int = MAX_PER_SHORT,
-    max_per_long: int = MAX_PER_LONG,
     n: int = TOP_N,
 ) -> pd.DataFrame:
     """
     Greedy diversity filter over the raw pair ranking.
 
     Walk rows in descending |momentum_score| order.  Admit each pair only if
-    neither leg has already reached its per-leg cap, then stop when n pairs
-    are collected (or the input is exhausted).
+    BOTH legs are unseen (each symbol may appear at most once across all
+    admitted pairs, regardless of long/short role).  Stop when n pairs are
+    collected or the input is exhausted.
 
     The raw DataFrame is never modified.
     """
     if df.empty:
         return df.copy()
 
-    short_counts: dict[str, int] = {}
-    long_counts:  dict[str, int] = {}
+    used: set[str] = set()
     selected: list[int] = []
 
-    # df is already sorted by momentum_score descending; abs ordering is
-    # maintained because compute_pair_momentum() uses nlargest(TOP_N, "_abs")
-    # before sorting, so the strongest absolute scores come first.
     by_abs = df.reindex(df["momentum_score"].abs().sort_values(ascending=False).index)
 
     for idx, row in by_abs.iterrows():
         la = row["long_asset"]
         sa = row["short_asset"]
-        if (short_counts.get(sa, 0) < max_per_short and
-                long_counts.get(la, 0) < max_per_long):
+        if la not in used and sa not in used:
             selected.append(idx)
-            short_counts[sa] = short_counts.get(sa, 0) + 1
-            long_counts[la]  = long_counts.get(la, 0) + 1
+            used.add(la)
+            used.add(sa)
             if len(selected) >= n:
                 break
 
@@ -230,8 +223,7 @@ def save_pair_momentum(df: pd.DataFrame) -> dict:
     div_df = diversify_pair_ranking(df)
     div_df.to_csv(OUTPUT_DIR / "pair_momentum_diversified.csv", index=False)
     print(
-        f"  pair_momentum_diversified.csv ({len(div_df)} pairs, "
-        f"max {MAX_PER_SHORT} per short leg / max {MAX_PER_LONG} per long leg)",
+        f"  pair_momentum_diversified.csv ({len(div_df)} pairs, each symbol once globally)",
         flush=True,
     )
 
@@ -243,8 +235,7 @@ def save_pair_momentum(df: pd.DataFrame) -> dict:
         "positive_score":      n_pos,
         "negative_score":      n_neg,
         "diversified_pairs":   len(div_df),
-        "max_per_short":       MAX_PER_SHORT,
-        "max_per_long":        MAX_PER_LONG,
+        "unique_symbols_only": True,
         "timeframe":           TIMEFRAME,
         "slope_window_bars":   SLOPE_WINDOW,
         "min_bars":            MIN_BARS,
