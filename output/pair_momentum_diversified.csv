@@ -1,8 +1,2 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-STRK-xyz:AAPL,xyz:AAPL,STRK,xyz:AAPL-STRK,Long xyz:AAPL / Short STRK,-270.32,0.8798,-237.8345,135,1d
-STRK-xyz:XYZ100,xyz:XYZ100,STRK,xyz:XYZ100-STRK,Long xyz:XYZ100 / Short STRK,-263.43,0.9128,-240.4502,174,1d
-APE-xyz:AAPL,xyz:AAPL,APE,xyz:AAPL-APE,Long xyz:AAPL / Short APE,-277.92,0.8847,-245.8787,135,1d
-APE-xyz:XYZ100,xyz:XYZ100,APE,xyz:XYZ100-APE,Long xyz:XYZ100 / Short APE,-271.02,0.9175,-248.6664,174,1d
-AR-TAO,TAO,AR,TAO-AR,Long TAO / Short AR,-295.52,0.9088,-268.558,221,1d
-OP-RENDER,RENDER,OP,RENDER-OP,Long RENDER / Short OP,-320.63,0.9025,-289.3588,221,1d
-OP-TAO,TAO,OP,TAO-OP,Long TAO / Short OP,-374.75,0.8474,-317.563,221,1d
+MERL-VVV,VVV,MERL,VVV-MERL,Long VVV / Short MERL,-1073.11,0.9641,-1034.553,221,1d

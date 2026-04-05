@@ -1,12 +1,11 @@
 {
-  "pairs_computed": 30,
-  "positive_score": 3,
-  "negative_score": 27,
-  "diversified_pairs": 7,
-  "max_per_short": 2,
-  "max_per_long": 2,
+  "pairs_computed": 50,
+  "positive_score": 9,
+  "negative_score": 41,
+  "diversified_pairs": 1,
+  "unique_symbols_only": true,
   "timeframe": "1d",
   "slope_window_bars": 100,
   "min_bars": 100,
-  "top_n": 30
+  "top_n": 50
 }
