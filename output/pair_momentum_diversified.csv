@@ -1,2 +1,2 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-MERL-VVV,VVV,MERL,VVV-MERL,Long VVV / Short MERL,-1060.23,0.9644,-1022.4972,221,1d
+MERL-VVV,VVV,MERL,VVV-MERL,Long VVV / Short MERL,-1046.23,0.9637,-1008.2305,221,1d
