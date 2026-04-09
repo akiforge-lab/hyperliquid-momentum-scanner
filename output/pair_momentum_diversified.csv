@@ -1,2 +1,3 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-MERL-VVV,VVV,MERL,VVV-MERL,Long VVV / Short MERL,-1034.34,0.962,-995.0877,221,1d
+IP-STABLE,STABLE,IP,STABLE-IP,Long STABLE / Short IP,-620.4,0.9069,-562.6391,155,1d
+MERL-VVV,VVV,MERL,VVV-MERL,Long VVV / Short MERL,-1022.11,0.9611,-982.327,221,1d
