@@ -1,3 +1,3 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-HYPE-IP,HYPE,IP,HYPE-IP,Long HYPE / Short IP,608.72,0.9368,570.2616,221,1d
-MERL-VVV,VVV,MERL,VVV-MERL,Long VVV / Short MERL,-963.57,0.9564,-921.5746,221,1d
+IP-xyz:CL,xyz:CL,IP,xyz:CL-IP,Long xyz:CL / Short IP,-646.67,0.9562,-618.3514,100,1d
+MERL-VVV,VVV,MERL,VVV-MERL,Long VVV / Short MERL,-946.61,0.9526,-901.7537,221,1d
