@@ -1,0 +1,85 @@
+name: Verify Risk Overlay
+
+# Manual trigger only — does not affect the daily momentum scan.
+# Purpose: confirm that src/risk_overlay.py runs successfully on GHA,
+# that output/risk_overlay.json is generated, and that the result is
+# inspectable from the repo and the Actions log.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed for the commit-back step
+
+jobs:
+  overlay:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Step 1: run the full momentum scan so the daily candle cache is warm.
+      # This ensures btc_rv_30d_ann is available when the overlay runs next.
+      # (On ephemeral GHA runners --risk-overlay in main.py runs BEFORE the
+      # candle fetch, so btc_rv would be None.  Running scan first avoids that.)
+      - name: Run momentum scan (warms candle cache)
+        run: python main.py --no-cache
+
+      # Step 2: run the risk overlay against the warm cache.
+      # Using the Python -c form so ONLY the overlay pipeline runs —
+      # the main momentum scan is NOT repeated.
+      - name: Run risk overlay
+        run: |
+          python -c "
+          import logging, sys
+          logging.basicConfig(level=logging.INFO, stream=sys.stdout,
+                              format='%(asctime)s  %(levelname)-7s  %(name)s - %(message)s',
+                              datefmt='%H:%M:%S')
+          from main import run_risk_overlay_scan
+          result = run_risk_overlay_scan()
+          print()
+          print('=== Overlay result summary ===')
+          for k, v in result.items():
+              if k != 'inputs':
+                  print(f'  {k}: {v}')
+          print('  inputs:')
+          for k, v in result.get('inputs', {}).items():
+              print(f'    {k}: {v}')
+          "
+
+      # Step 3: print the full JSON so it is visible directly in the Actions log.
+      - name: Print overlay JSON
+        run: cat output/risk_overlay.json
+
+      # Step 4: commit output/risk_overlay.json and data/risk_history.json.
+      #
+      # Why data/risk_history.json?
+      #   The history file accumulates funding_stress and oi_change_pct_24h
+      #   snapshots across runs.  Committing it lets z-scores for those signals
+      #   become non-null after MIN_HISTORY_DAYS (14) runs.  Without it, funding_z
+      #   and oi_stress_z stay None on every GHA run and risk_regime stays "unknown"
+      #   permanently.  File size is ~1 KB/day, capped at 400 entries (~400 KB max).
+      - name: Commit overlay output
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add output/risk_overlay.json data/risk_history.json
+
+          if git diff --cached --quiet; then
+            echo "Nothing changed — skipping commit."
+          else
+            git commit -m "chore: risk-overlay verification $(date -u '+%Y-%m-%dT%H:%MZ')"
+            git push
+          fi
