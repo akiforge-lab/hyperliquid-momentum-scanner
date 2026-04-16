@@ -36,6 +36,25 @@ from src.pair_signals import compute_pair_signals
 from src.pair_output import save_pair_results
 
 
+def run_risk_overlay_scan() -> dict:
+    """
+    Collect the crypto risk overlay (DVOL, funding stress, OI stress).
+
+    Runs BEFORE the main momentum scan so regime context is visible alongside
+    trade signals.  Does NOT modify momentum_score or any pipeline output.
+
+    Writes:
+      output/risk_overlay.json  — current snapshot
+      data/risk_history.json    — rolling history for z-score windows
+
+    Returns the overlay dict.
+    """
+    from src.risk_overlay import run_risk_overlay
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    OUTPUT_DIR.mkdir(exist_ok=True)
+    return run_risk_overlay()
+
+
 def run_scan(
     no_cache: bool = False,
     verbose: bool = False,
@@ -326,6 +345,13 @@ def _parse_args() -> argparse.Namespace:
                        "Run only the pairs scan (skips single-asset momentum scan). "
                        "Reuses cached candle data unless --no-cache is also set."
                    ))
+    p.add_argument("--risk-overlay", action="store_true",
+                   help=(
+                       "Collect crypto risk overlay signals (Deribit DVOL, HL funding "
+                       "stress, OI change) before the main scan.  Writes "
+                       "output/risk_overlay.json and data/risk_history.json.  "
+                       "Does not modify momentum scores."
+                   ))
     return p.parse_args()
 
 
@@ -354,6 +380,12 @@ if __name__ == "__main__":
             strict_source=args.hyperliquid_only,
         )
     else:
+        # Risk overlay runs first so regime context precedes trade signals.
+        # btc_rv will be None on ephemeral runners (no candle cache yet);
+        # risk_score falls back to funding_z and oi_z in that case.
+        if args.risk_overlay:
+            run_risk_overlay_scan()
+
         run_scan(
             no_cache=args.no_cache,
             verbose=args.verbose,

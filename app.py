@@ -1118,8 +1118,9 @@ async function runPairMomScan() {
 // ---------------------------------------------------------------------------
 // Auto-scan
 // ---------------------------------------------------------------------------
-const AUTO_SCAN_MS   = 6 * 60 * 60 * 1000;  // full scan every 6 hours
-const AUTO_POLL_MS   = 60 * 1000;            // refresh display every 1 min
+const AUTO_SCAN_MS       = 6 * 60 * 60 * 1000;  // interval between scans (6 h)
+const AUTO_FIRST_SCAN_MS = 3 * 60 * 1000;        // first auto-scan 3 min after open
+const AUTO_POLL_MS       = 60 * 1000;            // display refresh every 1 min
 
 let _nextScanAt      = null;
 let _autoScanRunning = false;
@@ -1145,12 +1146,17 @@ async function _triggerAutoScan() {
   try {
     await fetch('/api/scan', opts);               // waits until scan finishes
     await fetch('/api/pair-momentum/scan', opts); // then pair momentum
-    await loadData();
-    if (pairMomLoaded) await loadPairMomData();   // preserves _pmView state
   } catch(e) {
     console.error('Auto-scan failed', e);
   } finally {
+    // Always refresh display — picks up results even if scan request timed out
     _autoScanRunning = false;
+    try {
+      await loadData();
+      if (pairMomLoaded) await loadPairMomData();
+    } catch(e2) {
+      console.error('Auto-refresh failed', e2);
+    }
   }
 }
 
@@ -1163,7 +1169,13 @@ function _scheduleNextScan() {
 }
 
 function _startAutoScan() {
-  _scheduleNextScan();
+  // First scan fires soon after page open; subsequent scans every 6 h
+  _nextScanAt = Date.now() + AUTO_FIRST_SCAN_MS;
+  setTimeout(async () => {
+    await _triggerAutoScan();
+    _scheduleNextScan();
+  }, AUTO_FIRST_SCAN_MS);
+
   // Lightweight display poll — re-reads output files, doesn't run scan
   setInterval(async () => {
     if (!_autoScanRunning) {
@@ -1231,21 +1243,23 @@ def api_data():
     if not summary_path.exists():
         return jsonify({"no_data": True})
 
-    summary      = _read_json(summary_path) or {}
-    longs        = _read_csv_rows(OUTPUT_DIR / "top_longs.csv")
-    shorts       = _read_csv_rows(OUTPUT_DIR / "top_shorts.csv")
-    missing      = _read_csv_rows(OUTPUT_DIR / "missing_symbols.csv")
-    xyz_debug    = _read_csv_rows(OUTPUT_DIR / "xyz_debug.csv")
-    xyz_rankings = _read_csv_rows(OUTPUT_DIR / "xyz_rankings.csv")
+    summary       = _read_json(summary_path) or {}
+    longs         = _read_csv_rows(OUTPUT_DIR / "top_longs.csv")
+    shorts        = _read_csv_rows(OUTPUT_DIR / "top_shorts.csv")
+    missing       = _read_csv_rows(OUTPUT_DIR / "missing_symbols.csv")
+    xyz_debug     = _read_csv_rows(OUTPUT_DIR / "xyz_debug.csv")
+    xyz_rankings  = _read_csv_rows(OUTPUT_DIR / "xyz_rankings.csv")
+    risk_overlay  = _read_json(OUTPUT_DIR / "risk_overlay.json")   # None if absent
 
     return jsonify({
-        "no_data":      False,
-        "summary":      summary,
-        "longs":        longs,
-        "shorts":       shorts,
-        "missing":      missing,
-        "xyz_debug":    xyz_debug,
-        "xyz_rankings": xyz_rankings,
+        "no_data":       False,
+        "summary":       summary,
+        "longs":         longs,
+        "shorts":        shorts,
+        "missing":       missing,
+        "xyz_debug":     xyz_debug,
+        "xyz_rankings":  xyz_rankings,
+        "risk_overlay":  risk_overlay,
     })
 
 

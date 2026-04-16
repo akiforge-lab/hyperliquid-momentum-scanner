@@ -28,6 +28,13 @@ TOP_N = 10
 RANKING_R2_LONG  = 0.7   # longs: solid trend fit required
 RANKING_R2_SHORT = 0.8   # shorts: higher conviction required (trend reversals are noisier)
 
+# TODO(operator): Confirm desired SKY handling (lower RANKING_R2_LONG, introduce
+# FORCED_LONGS, or keep current threshold-based exclusion).
+
+# Coins excluded from top_longs / top_shorts regardless of signal strength.
+# all_rankings.csv remains unfiltered so diagnostics retain the full dataset.
+EXCLUDED_COINS: frozenset[str] = frozenset({"FXS"})
+
 logger = logging.getLogger(__name__)
 
 
@@ -36,8 +43,9 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 def _top_longs(df: pd.DataFrame, n: int = TOP_N) -> pd.DataFrame:
+    filtered = df[~df["coin"].isin(EXCLUDED_COINS)]
     return (
-        df[(df["signal"] == "LONG") & (df["r2"] >= RANKING_R2_LONG)]
+        filtered[(filtered["signal"] == "LONG") & (filtered["r2"] >= RANKING_R2_LONG)]
         .sort_values("momentum_score", ascending=False)
         .head(n)
         .reset_index(drop=True)
@@ -45,8 +53,9 @@ def _top_longs(df: pd.DataFrame, n: int = TOP_N) -> pd.DataFrame:
 
 
 def _top_shorts(df: pd.DataFrame, n: int = TOP_N) -> pd.DataFrame:
+    filtered = df[~df["coin"].isin(EXCLUDED_COINS)]
     return (
-        df[(df["signal"] == "SHORT") & (df["r2"] >= RANKING_R2_SHORT)]
+        filtered[(filtered["signal"] == "SHORT") & (filtered["r2"] >= RANKING_R2_SHORT)]
         .sort_values("momentum_score", ascending=True)   # most negative first
         .head(n)
         .reset_index(drop=True)
