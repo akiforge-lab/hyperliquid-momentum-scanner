@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "timestamp_utc": "2026-04-16T07:06:49Z",
+  "history_days": 91,
+  "inputs": {
+    "dvol_btc": 44.0,
+    "btc_rv_30d_ann": 35.99,
+    "hype_rv_30d_ann": 54.36,
+    "funding_stress": 1.25e-05,
+    "oi_total_usd": 5793338857.0,
+    "oi_change_pct_24h": null
+  },
+  "vrp_btc": 8.01,
+  "vrp_z": null,
+  "funding_stress_z": null,
+  "oi_stress_z": null,
+  "risk_score": null,
+  "risk_regime": "unknown",
+  "regime_multiplier": 1.0
+}
