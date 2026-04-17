@@ -1,3 +1,3 @@
 coin,n_closes,latest_price,slope_ann_pct,r2,momentum_score,ma100,signal,source
-VVV,221,8.5706,396.06,0.7631,302.2503,4.693517,LONG,hyperliquid
-xyz:CL,101,88.143,184.75,0.8033,148.4044,77.78354,LONG,hyperliquid
+VVV,221,8.7476,400.87,0.7708,308.9984,4.760117,LONG,hyperliquid
+xyz:CL,102,89.597,182.59,0.7944,145.0462,78.13516,LONG,hyperliquid
