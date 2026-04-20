@@ -1,3 +1,4 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-IP-xyz:CL,xyz:CL,IP,xyz:CL-IP,Long xyz:CL / Short IP,-632.21,0.9403,-594.4802,104,1d
-MERL-VVV,VVV,MERL,VVV-MERL,Long VVV / Short MERL,-873.67,0.9312,-813.5282,221,1d
+RDNT-xyz:CL,xyz:CL,RDNT,xyz:CL-RDNT,Long xyz:CL / Short RDNT,-536.89,0.9518,-510.998,103,1d
+IP-VVV,VVV,IP,VVV-IP,Long VVV / Short IP,-824.62,0.9526,-785.5463,221,1d
+MERL-xyz:NVDA,xyz:NVDA,MERL,xyz:NVDA-MERL,Long xyz:NVDA / Short MERL,-883.03,0.9006,-795.2176,150,1d
