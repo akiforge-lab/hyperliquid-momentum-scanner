@@ -1,26 +1,26 @@
 hyperliquid_symbol,parsed_base_symbol,asset_type_guess,hyperliquid_fetch_ok,yahoo_symbol_used,yahoo_fetch_ok,number_of_closes,failure_stage,exclusion_reason,slope_ann_pct,r2,momentum_score,signal
-xyz:AAPL,AAPL,stock,True,,False,154,in_rankings,,-5.15,0.0277,-0.1423,NEUTRAL
-xyz:NVDA,NVDA,stock,True,,False,163,in_rankings,,1.2,0.0007,0.0009,NEUTRAL
-xyz:TSLA,TSLA,stock,True,,False,162,in_rankings,,-50.83,0.6689,-34.0019,SHORT
-xyz:MSFT,MSFT,stock,True,,False,156,in_rankings,,-29.43,0.2539,-7.4701,NEUTRAL
-xyz:AMZN,AMZN,stock,True,,False,157,in_rankings,,16.22,0.0484,0.7843,NEUTRAL
-xyz:META,META,stock,True,,False,155,in_rankings,,-30.86,0.2039,-6.2915,NEUTRAL
-xyz:GOOGL,GOOGL,stock,True,,False,157,in_rankings,,-11.11,0.0422,-0.4683,NEUTRAL
-xyz:COIN,COIN,stock,True,,False,150,in_rankings,,12.18,0.017,0.2067,NEUTRAL
-xyz:NFLX,NFLX,stock,True,,False,137,in_rankings,,69.96,0.5861,41.0043,LONG
-xyz:AMD,AMD,stock,True,,False,141,in_rankings,,34.13,0.0878,2.9969,NEUTRAL
-xyz:INTC,INTC,stock,True,,False,142,in_rankings,,82.19,0.3627,29.8072,NEUTRAL
-xyz:ORCL,ORCL,stock,True,,False,140,in_rankings,,-3.5,0.0022,-0.0077,NEUTRAL
-xyz:MU,MU,stock,True,,False,126,in_rankings,,6.82,0.0076,0.0521,NEUTRAL
-xyz:PLTR,PLTR,stock,True,,False,161,in_rankings,,-2.23,0.0011,-0.0024,NEUTRAL
-xyz:MSTR,MSTR,stock,True,,False,143,in_rankings,,8.3,0.0083,0.0688,NEUTRAL
-xyz:HOOD,HOOD,stock,True,,False,149,in_rankings,,-51.68,0.1899,-9.8117,NEUTRAL
-xyz:RIVN,RIVN,stock,True,,False,100,in_rankings,,17.89,0.1101,1.9697,NEUTRAL
-xyz:BABA,BABA,stock,True,,False,99,insufficient_history_after_fetch,Only 99 daily closes (need >= 100),,,,
-xyz:TSM,TSM,stock,True,,False,80,insufficient_history_after_fetch,Only 80 daily closes (need >= 100),,,,
-xyz:GOLD,GOLD,commodity,True,,False,123,in_rankings,,-28.52,0.3305,-9.4242,NEUTRAL
-xyz:SILVER,SILVER,commodity,True,,False,119,in_rankings,,-63.91,0.3174,-20.2883,NEUTRAL
-xyz:CL,CL,commodity,True,,False,108,in_rankings,,163.53,0.7066,115.5534,LONG
-xyz:NATGAS,NATGAS,commodity,True,,False,93,insufficient_history_after_fetch,Only 93 daily closes (need >= 100),,,,
-xyz:COPPER,COPPER,commodity,True,,False,100,in_rankings,,-7.18,0.037,-0.2658,NEUTRAL
-xyz:XYZ100,XYZ100,index,True,,False,193,in_rankings,,-1.22,0.0014,-0.0017,NEUTRAL
+xyz:AAPL,AAPL,stock,True,,False,155,in_rankings,,-5.12,0.0273,-0.1399,NEUTRAL
+xyz:NVDA,NVDA,stock,True,,False,164,in_rankings,,2.89,0.0041,0.0118,NEUTRAL
+xyz:TSLA,TSLA,stock,True,,False,163,in_rankings,,-49.67,0.6612,-32.8424,SHORT
+xyz:MSFT,MSFT,stock,True,,False,157,in_rankings,,-25.92,0.2128,-5.5153,NEUTRAL
+xyz:AMZN,AMZN,stock,True,,False,158,in_rankings,,20.99,0.0783,1.6426,NEUTRAL
+xyz:META,META,stock,True,,False,156,in_rankings,,-29.82,0.1908,-5.6882,NEUTRAL
+xyz:GOOGL,GOOGL,stock,True,,False,158,in_rankings,,-8.44,0.0238,-0.2007,NEUTRAL
+xyz:COIN,COIN,stock,True,,False,151,in_rankings,,16.83,0.0334,0.5624,NEUTRAL
+xyz:NFLX,NFLX,stock,True,,False,138,in_rankings,,69.55,0.5804,40.3657,LONG
+xyz:AMD,AMD,stock,True,,False,142,in_rankings,,46.5,0.1409,6.5522,NEUTRAL
+xyz:INTC,INTC,stock,True,,False,143,in_rankings,,93.03,0.3815,35.4943,NEUTRAL
+xyz:ORCL,ORCL,stock,True,,False,141,in_rankings,,1.27,0.0003,0.0004,NEUTRAL
+xyz:MU,MU,stock,True,,False,127,in_rankings,,9.59,0.0144,0.1385,NEUTRAL
+xyz:PLTR,PLTR,stock,True,,False,162,in_rankings,,-0.42,0.0,-0.0,NEUTRAL
+xyz:MSTR,MSTR,stock,True,,False,144,in_rankings,,16.0,0.03,0.48,NEUTRAL
+xyz:HOOD,HOOD,stock,True,,False,150,in_rankings,,-45.14,0.1557,-7.0302,NEUTRAL
+xyz:RIVN,RIVN,stock,True,,False,101,in_rankings,,19.52,0.1301,2.5392,NEUTRAL
+xyz:BABA,BABA,stock,True,,False,100,in_rankings,,-91.07,0.6948,-63.2769,SHORT
+xyz:TSM,TSM,stock,True,,False,81,insufficient_history_after_fetch,Only 81 daily closes (need >= 100),,,,
+xyz:GOLD,GOLD,commodity,True,,False,124,in_rankings,,-28.9,0.3372,-9.7452,NEUTRAL
+xyz:SILVER,SILVER,commodity,True,,False,120,in_rankings,,-60.65,0.3002,-18.2094,NEUTRAL
+xyz:CL,CL,commodity,True,,False,109,in_rankings,,162.47,0.7026,114.1501,LONG
+xyz:NATGAS,NATGAS,commodity,True,,False,94,insufficient_history_after_fetch,Only 94 daily closes (need >= 100),,,,
+xyz:COPPER,COPPER,commodity,True,,False,101,in_rankings,,-5.3,0.0206,-0.1091,NEUTRAL
+xyz:XYZ100,XYZ100,index,True,,False,194,in_rankings,,0.77,0.0005,0.0004,NEUTRAL
