@@ -1,5 +1,5 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-DYM-xyz:CL,xyz:CL,DYM,xyz:CL-DYM,Long xyz:CL / Short DYM,-477.96,0.9488,-453.4866,116,1d
-FXS-ZEC,ZEC,FXS,ZEC-FXS,Long ZEC / Short FXS,-617.54,0.7635,-471.4926,106,1d
-IP-MON,MON,IP,MON-IP,Long MON / Short IP,-533.13,0.9475,-505.1325,206,1d
-RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-788.03,0.9469,-746.1976,219,1d
+DYM-xyz:CL,xyz:CL,DYM,xyz:CL-DYM,Long xyz:CL / Short DYM,-474.6,0.947,-449.4569,117,1d
+FXS-ZEC,ZEC,FXS,ZEC-FXS,Long ZEC / Short FXS,-617.54,0.7635,-471.4926,105,1d
+IP-MON,MON,IP,MON-IP,Long MON / Short IP,-523.76,0.946,-495.4809,207,1d
+RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-789.03,0.9473,-747.4316,219,1d
