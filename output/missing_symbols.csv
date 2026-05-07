@@ -19,15 +19,17 @@ PANDORA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Financ
 PIXEL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 AI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 MYRO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+HBAR,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 OMNI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+NOT,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 LISTA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 kDOGS,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 CATI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 NEIROETH,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 JELLY,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-CANTO,insufficient_history,,Only 55 closes (need 100)
-AI16Z,insufficient_history,,Only 40 closes (need 100)
-LAUNCHCOIN,insufficient_history,,Only 28 closes (need 100)
-AZTEC,insufficient_history,,Only 84 closes (need 100)
-CHIP,insufficient_history,,Only 15 closes (need 100)
-xyz:TSM,insufficient_history,,Only 93 closes (need 100)
+CANTO,insufficient_history,,Only 54 closes (need 100)
+AI16Z,insufficient_history,,Only 39 closes (need 100)
+LAUNCHCOIN,insufficient_history,,Only 27 closes (need 100)
+AZTEC,insufficient_history,,Only 85 closes (need 100)
+CHIP,insufficient_history,,Only 16 closes (need 100)
+xyz:TSM,insufficient_history,,Only 94 closes (need 100)
