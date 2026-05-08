@@ -1,6 +1,4 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-DYM-GRASS,GRASS,DYM,GRASS-DYM,Long GRASS / Short DYM,-479.74,0.9162,-439.5338,221,1d
-FXS-ZEC,ZEC,FXS,ZEC-FXS,Long ZEC / Short FXS,-617.54,0.7635,-471.4926,100,1d
-IP-xyz:INTC,xyz:INTC,IP,xyz:INTC-IP,Long xyz:INTC / Short IP,-498.41,0.9641,-480.5382,156,1d
-RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-800.96,0.9522,-762.6405,219,1d
-MERL-xyz:CL,xyz:CL,MERL,xyz:CL-MERL,Long xyz:CL / Short MERL,-934.57,0.8438,-788.6328,152,1d
+DYM-GRASS,GRASS,DYM,GRASS-DYM,Long GRASS / Short DYM,-479.56,0.9159,-439.2492,221,1d
+IP-xyz:INTC,xyz:INTC,IP,xyz:INTC-IP,Long xyz:INTC / Short IP,-496.0,0.9645,-478.4161,157,1d
+RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-807.48,0.9546,-770.7904,219,1d
