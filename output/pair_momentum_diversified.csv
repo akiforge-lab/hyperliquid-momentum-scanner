@@ -1,4 +1,4 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-DYM-kLUNC,kLUNC,DYM,kLUNC-DYM,Long kLUNC / Short DYM,-473.25,0.9183,-434.5903,221,1d
-IP-xyz:INTC,xyz:INTC,IP,xyz:INTC-IP,Long xyz:INTC / Short IP,-497.94,0.9642,-480.093,159,1d
-RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-817.39,0.9574,-782.5983,219,1d
+DYM-kLUNC,kLUNC,DYM,kLUNC-DYM,Long kLUNC / Short DYM,-479.34,0.9208,-441.3816,221,1d
+IP-xyz:INTC,xyz:INTC,IP,xyz:INTC-IP,Long xyz:INTC / Short IP,-499.1,0.9646,-481.4319,160,1d
+RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-822.52,0.9578,-787.8487,219,1d
