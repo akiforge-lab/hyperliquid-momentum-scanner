@@ -14,6 +14,10 @@ data/candles_1h/
 # Commit if you want a history of HL listing changes; omit if you prefer clean history.
 data/universe.json
 
+# Tracked-wallet overlay state — persists only on the DO host where the
+# tracker runs.  Never committed: per-host state, would create merge conflicts.
+data/wallet_state/
+
 # Keep the data/ directory itself trackable (for the .gitkeep below)
 !data/.gitkeep
 
