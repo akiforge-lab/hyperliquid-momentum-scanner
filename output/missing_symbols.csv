@@ -25,10 +25,9 @@ kDOGS,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance 
 CATI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 NEIROETH,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 JELLY,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-2Z,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-FXS,insufficient_history,,Only 90 closes (need 100)
-CANTO,insufficient_history,,Only 44 closes (need 100)
-AI16Z,insufficient_history,,Only 29 closes (need 100)
-LAUNCHCOIN,insufficient_history,,Only 17 closes (need 100)
-AZTEC,insufficient_history,,Only 95 closes (need 100)
-CHIP,insufficient_history,,Only 26 closes (need 100)
+FXS,insufficient_history,,Only 89 closes (need 100)
+CANTO,insufficient_history,,Only 43 closes (need 100)
+AI16Z,insufficient_history,,Only 28 closes (need 100)
+LAUNCHCOIN,insufficient_history,,Only 16 closes (need 100)
+AZTEC,insufficient_history,,Only 96 closes (need 100)
+CHIP,insufficient_history,,Only 27 closes (need 100)
