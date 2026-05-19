@@ -18,6 +18,18 @@ data/universe.json
 # tracker runs.  Never committed: per-host state, would create merge conflicts.
 data/wallet_state/
 
+# Runtime logs (wallet tracker + momentum notifier).  Per-host, ephemeral.
+data/logs/
+
+# Momentum notifier persisted state / cache (signal + history snapshots).
+# Per-host like wallet_state; never committed.
+data/notifier_state/
+
+# Local cron wrapper — contains host-specific paths and sources .env.
+# Never committed (see scripts/README.md for how to recreate it).
+scripts/run_track_wallets.sh
+scripts/run_hl_notify.sh
+
 # Keep the data/ directory itself trackable (for the .gitkeep below)
 !data/.gitkeep
 
