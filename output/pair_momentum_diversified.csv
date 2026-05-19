@@ -1,3 +1,3 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-IP-xyz:INTC,xyz:INTC,IP,xyz:INTC-IP,Long xyz:INTC / Short IP,-513.16,0.9716,-498.604,167,1d
-RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-806.11,0.9565,-771.0219,220,1d
+IP-xyz:INTC,xyz:INTC,IP,xyz:INTC-IP,Long xyz:INTC / Short IP,-514.85,0.9729,-500.8725,168,1d
+RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-806.11,0.9565,-771.0219,219,1d
