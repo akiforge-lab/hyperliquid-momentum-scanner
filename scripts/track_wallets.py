@@ -104,10 +104,21 @@ def render_change(address: str, change: dict) -> str:
             f"({_fmt_usd(change.get('old_notional'))} -> {_fmt_usd(change.get('new_notional'))})"
         )
     if kind == "RESIZE":
-        pct = change.get("change_pct", 0) * 100
+        side      = change["side"]
+        pct       = change.get("change_pct", 0) * 100
+        direction = change.get("direction") or (
+            "INCREASE" if pct >= 0 else "REDUCE"
+        )
+        if direction == "INCREASE":
+            tag    = "[INCREASE]"
+            action = f"added to {side}"
+        else:
+            tag    = "[REDUCE]"
+            action = "covering" if side == "SHORT" else "trimming"
+            action = f"{action} {side}"
         return (
-            f"[RESIZE] <b>{label}</b> {change['side']} <b>{coin}</b> "
-            f"({pct:+.1f}%)\n"
+            f"{tag} <b>{label}</b> {side} <b>{coin}</b> "
+            f"({action}, exposure {pct:+.1f}%)\n"
             f"  {_fmt_size(change.get('old_szi'))} -> {_fmt_size(change.get('new_szi'))}  "
             f"({_fmt_usd(change.get('old_notional'))} -> {_fmt_usd(change.get('new_notional'))})"
         )

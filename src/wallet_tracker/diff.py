@@ -36,7 +36,9 @@ def diff_positions(
       OPEN              new position (above dust threshold)
       CLOSE             previously-tracked position is gone or now dust
       FLIP              side reversed (long -> short or vice versa)
-      RESIZE            same side, abs(delta_size) / abs(size_old) >= SIZE_CHANGE_PCT
+      RESIZE            same side, abs(delta_exposure) / abs(size_old) >= SIZE_CHANGE_PCT
+                        (carries direction=INCREASE|REDUCE based on whether
+                         absolute exposure grew or shrank; change_pct is signed)
       LEVERAGE_CHANGE   leverage value or type changed (same side)
 
     On the very first run (prev is None) no notifications fire -- we just
@@ -130,17 +132,23 @@ def diff_positions(
             })
             continue
 
-        # Resize
-        if abs(old_szi) > 0:
-            pct = abs(new_szi - old_szi) / abs(old_szi)
-            if pct >= SIZE_CHANGE_PCT:
+        # Resize -- same side; classify by change in *absolute* exposure.
+        # Positive pct => exposure grew (INCREASE); negative => exposure
+        # shrank (REDUCE / cover).  This is direction-aware so a short
+        # going -10 -> -8 reads as a reduction, not a "+20%" increase.
+        old_abs = abs(old_szi)
+        new_abs = abs(new_szi)
+        if old_abs > 0:
+            signed_pct = (new_abs - old_abs) / old_abs
+            if abs(signed_pct) >= SIZE_CHANGE_PCT:
                 changes.append({
                     "kind":         "RESIZE",
+                    "direction":    "INCREASE" if new_abs > old_abs else "REDUCE",
                     "coin":         coin,
                     "side":         new_side,
                     "old_szi":      old_szi,
                     "new_szi":      new_szi,
-                    "change_pct":   pct,
+                    "change_pct":   signed_pct,
                     "old_notional": _notional(old),
                     "new_notional": _notional(new),
                 })
