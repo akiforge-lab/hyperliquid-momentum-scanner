@@ -18,8 +18,8 @@ TRACKED_WALLETS: list[str] = [
 
 # Human-friendly labels (optional).  Falls back to truncated address in messages.
 WALLET_LABELS: dict[str, str] = {
-    "0x418aa6bf98a2b2bc93779f810330d88cde488888": "Wallet-A",
-    "0x8def9f50456c6c4e37fa5d3d57f108ed23992dae": "Wallet-B",
+    "0x418aa6bf98a2b2bc93779f810330d88cde488888": "58bro",
+    "0x8def9f50456c6c4e37fa5d3d57f108ed23992dae": "Laurent",
 }
 
 # ---------------------------------------------------------------------------
@@ -30,6 +30,11 @@ MIN_NOTIONAL_USD: float = 1_000.0
 
 # Trigger a RESIZE notification when |size_new - size_old| / |size_old| >= this.
 SIZE_CHANGE_PCT: float = 0.20   # 20 %
+
+# Consecutive same-direction RESIZE events on the same coin within this many
+# minutes are summarised as one running sequence ("A -> B in N min") instead
+# of separate mechanical lines.  Purely a display aid -- detection is unchanged.
+SEQUENCE_WINDOW_MIN: int = 30
 
 # ---------------------------------------------------------------------------
 # API + runtime

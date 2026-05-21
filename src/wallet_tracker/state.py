@@ -38,18 +38,25 @@ def load_state(address: str) -> Optional[dict]:
         return None
 
 
-def save_state(address: str, positions: dict[str, dict], raw: dict | None = None) -> None:
+def save_state(
+    address: str,
+    positions: dict[str, dict],
+    raw: dict | None = None,
+    sequences: dict | None = None,
+) -> None:
     """
     Atomically persist the current snapshot.
 
     `positions` is the extracted coin->position mapping.
     `raw` is the full payload (optional, kept for debugging only).
+    `sequences` is the running RESIZE-sequence memory (optional, display only).
     """
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     payload = {
         "address":   address.lower(),
         "ts":        datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "positions": positions,
+        "sequences": sequences or {},
     }
     if raw is not None:
         payload["raw_margin_summary"] = raw.get("marginSummary")
