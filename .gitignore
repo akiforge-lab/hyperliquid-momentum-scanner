@@ -25,10 +25,15 @@ data/logs/
 # Per-host like wallet_state; never committed.
 data/notifier_state/
 
-# Local cron wrapper — contains host-specific paths and sources .env.
-# Never committed (see scripts/README.md for how to recreate it).
+# Intraday momentum stress overlay state (per-coin alert cooldowns).
+# Per-host; never committed.
+data/momentum_stress/
+
+# Local cron wrappers — contain host-specific paths and source .env.
+# Never committed (see scripts/README.md for how to recreate them).
 scripts/run_track_wallets.sh
 scripts/run_hl_notify.sh
+scripts/run_momentum_stress.sh
 
 # Keep the data/ directory itself trackable (for the .gitkeep below)
 !data/.gitkeep

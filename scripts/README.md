@@ -100,3 +100,42 @@ Independent. The daily scan runs on GHA ephemeral runners and commits
 results to `output/`. The wallet tracker runs on DO with persistent local
 state in `data/wallet_state/` (gitignored). Neither touches the other's
 state.
+
+## `momentum_stress.py` — intraday momentum stress overlay
+
+Read-only live-stress layer over the daily structural ranking. For the
+top-N strongest signals in `output/top_longs.csv` / `output/top_shorts.csv`
+it fetches live Hyperliquid mid prices (public `allMids`) and sends a
+concise Telegram alert when a high-score signal moves *against* itself:
+
+- a high-score **LONG** dumping intraday → possible crowded-long unwind
+- a high-score **SHORT** pumping intraday → possible short squeeze / invalidation
+- (optional) a large move that *confirms* the signal direction
+
+**No signing. No private keys. No order placement.** It never triggers
+the GitHub Actions scan — the daily ranking stays as-is.
+
+Per-coin cooldown suppresses repeats; the first run seeds state silently.
+State: `data/momentum_stress/state.json`. Log: `data/logs/momentum_stress.log`
+(both gitignored). Tunable via env vars: `MS_TOP_N`, `MS_DROP_PCT`,
+`MS_RISE_PCT`, `MS_ALIGN_PCT` (0 disables aligned alerts), `MS_COOLDOWN_HOURS`.
+
+## Per-host cron wrappers (not committed)
+
+`scripts/hl_notify.py`, `scripts/momentum_stress.py` and `track_wallets.py`
+are run from cron via small wrapper scripts that load `.env` (cron does not
+source it). The wrappers contain host-specific paths and are **gitignored** —
+recreate them per host:
+
+| Wrapper | Runs | Suggested cron (UTC) |
+|---|---|---|
+| `run_track_wallets.sh` | `track_wallets.py` | `*/5 * * * *` |
+| `run_hl_notify.sh` | `hl_notify.py` | `30 3 * * *` and `0 7,14 * * *` |
+| `run_momentum_stress.sh` | `momentum_stress.py` | `*/30 * * * *` |
+
+Each wrapper is a few lines: `cd` to the repo, make credentials available
+(`source .env` or `export HL_ENV_FILE=...`), then exec
+`.venv/bin/python scripts/<script>.py`. Tokens are never hardcoded in the
+committed scripts — they read `TG_BOT_TOKEN` / `TG_CHAT_ID` (notifier and
+overlay) or `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` (wallet tracker) from
+the environment.
