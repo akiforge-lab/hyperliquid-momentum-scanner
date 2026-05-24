@@ -1,18 +1,18 @@
 {
-  "scan_timestamp": "2026-05-23T05:51:01.675524+00:00",
+  "scan_timestamp": "2026-05-24T06:13:51.170811+00:00",
   "used_cache": false,
   "strict_source_mode": false,
   "universe_size": 255,
-  "assets_with_data": 225,
-  "assets_with_sufficient_history": 220,
-  "assets_excluded_no_data": 30,
+  "assets_with_data": 229,
+  "assets_with_sufficient_history": 224,
+  "assets_excluded_no_data": 26,
   "assets_excluded_short_history": 5,
-  "assets_computed": 220,
-  "long_candidates": 50,
+  "assets_computed": 224,
+  "long_candidates": 55,
   "short_candidates": 19,
   "source_breakdown": {
-    "hyperliquid": 214,
-    "yahoo": 11
+    "hyperliquid": 220,
+    "yahoo": 9
   },
   "xyz_total": 25,
   "xyz_with_price_data": 25,
