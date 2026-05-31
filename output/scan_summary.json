@@ -1,5 +1,5 @@
 {
-  "scan_timestamp": "2026-05-30T05:59:08.606010+00:00",
+  "scan_timestamp": "2026-05-31T06:37:55.682022+00:00",
   "used_cache": false,
   "strict_source_mode": false,
   "universe_size": 255,
@@ -8,11 +8,11 @@
   "assets_excluded_no_data": 26,
   "assets_excluded_short_history": 5,
   "assets_computed": 224,
-  "long_candidates": 47,
+  "long_candidates": 43,
   "short_candidates": 18,
   "source_breakdown": {
-    "hyperliquid": 219,
-    "yahoo": 10
+    "hyperliquid": 220,
+    "yahoo": 9
   },
   "xyz_total": 25,
   "xyz_with_price_data": 25,
