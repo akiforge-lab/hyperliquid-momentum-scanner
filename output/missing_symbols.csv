@@ -22,15 +22,11 @@ MYRO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance m
 OMNI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 LISTA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 kDOGS,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-POL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 CATI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-CELO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-SCR,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 NEIROETH,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-kNEIRO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 JELLY,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-FXS,insufficient_history,,Only 74 closes (need 100)
-CANTO,insufficient_history,,Only 28 closes (need 100)
-AI16Z,insufficient_history,,Only 13 closes (need 100)
-LAUNCHCOIN,insufficient_history,,Only 1 closes (need 100)
-CHIP,insufficient_history,,Only 42 closes (need 100)
+LAUNCHCOIN,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
+FXS,insufficient_history,,Only 73 closes (need 100)
+CANTO,insufficient_history,,Only 27 closes (need 100)
+AI16Z,insufficient_history,,Only 12 closes (need 100)
+CHIP,insufficient_history,,Only 43 closes (need 100)
