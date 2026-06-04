@@ -1,4 +1,4 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-IP-ZEC,ZEC,IP,ZEC-IP,Long ZEC / Short IP,-495.65,0.9615,-476.543,221,1d
-RESOLV-xyz:INTC,xyz:INTC,RESOLV,xyz:INTC-RESOLV,Long xyz:INTC / Short RESOLV,-652.46,0.9346,-609.8036,183,1d
-RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-770.12,0.9633,-741.8496,220,1d
+IP-ZEC,ZEC,IP,ZEC-IP,Long ZEC / Short IP,-497.08,0.9618,-478.1049,221,1d
+RESOLV-xyz:INTC,xyz:INTC,RESOLV,xyz:INTC-RESOLV,Long xyz:INTC / Short RESOLV,-656.18,0.9374,-615.0757,184,1d
+RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-772.13,0.9634,-743.8579,220,1d
