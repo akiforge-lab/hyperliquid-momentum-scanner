@@ -1,3 +1,4 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-RESOLV-xyz:INTC,xyz:INTC,RESOLV,xyz:INTC-RESOLV,Long xyz:INTC / Short RESOLV,-663.73,0.9429,-625.8016,186,1d
-RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-770.56,0.9632,-742.2075,219,1d
+IP-xyz:AMD,xyz:AMD,IP,xyz:AMD-IP,Long xyz:AMD / Short IP,-483.77,0.9856,-476.8217,186,1d
+RESOLV-xyz:INTC,xyz:INTC,RESOLV,xyz:INTC-RESOLV,Long xyz:INTC / Short RESOLV,-665.33,0.9444,-628.3308,187,1d
+RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-777.91,0.9621,-748.4459,220,1d
