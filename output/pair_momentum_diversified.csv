@@ -1,3 +1,3 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-RESOLV-xyz:INTC,xyz:INTC,RESOLV,xyz:INTC-RESOLV,Long xyz:INTC / Short RESOLV,-676.69,0.9525,-644.5758,190,1d
-RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-808.62,0.9609,-776.9744,220,1d
+RESOLV-xyz:INTC,xyz:INTC,RESOLV,xyz:INTC-RESOLV,Long xyz:INTC / Short RESOLV,-678.41,0.9536,-646.9434,191,1d
+RDNT-VVV,VVV,RDNT,VVV-RDNT,Long VVV / Short RDNT,-820.31,0.9639,-790.7195,220,1d
