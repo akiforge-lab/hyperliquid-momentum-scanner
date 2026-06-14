@@ -31,7 +31,7 @@ AAVE,included,221,,crypto
 COMP,included,221,,crypto
 MKR,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 WLD,included,221,,crypto
-FXS,included,63,,crypto
+FXS,included,62,,crypto
 HPOS,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 RLB,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 UNIBOT,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
@@ -50,13 +50,13 @@ BLZ,included,220,,crypto
 DOT,included,221,,crypto
 BANANA,included,221,,crypto
 TRB,included,221,,crypto
-FTT,included,202,,crypto
+FTT,included,201,,crypto
 LOOM,included,220,,crypto
 OGN,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 RDNT,included,220,,crypto
 ARK,included,221,,crypto
 BNT,included,220,,crypto
-CANTO,included,17,,crypto
+CANTO,included,16,,crypto
 REQ,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 BIGTIME,included,221,,crypto
 KAS,included,221,,crypto
@@ -87,7 +87,7 @@ IMX,included,221,,crypto
 kBONK,included,221,,crypto
 GMT,included,221,,crypto
 SUPER,included,221,,crypto
-USTC,included,182,,crypto
+USTC,included,181,,crypto
 NFTI,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 JUP,included,221,,crypto
 kLUNC,included,221,,crypto
@@ -96,7 +96,7 @@ GALA,included,221,,crypto
 JTO,included,221,,crypto
 NTRN,excluded,0,No data from Hyperliquid or Yahoo Finance (tried symbol: NTRN-USD),crypto
 ACE,included,221,,crypto
-MAV,included,182,,crypto
+MAV,included,181,,crypto
 WIF,included,221,,crypto
 CAKE,included,221,,crypto
 PEOPLE,included,221,,crypto
@@ -109,7 +109,7 @@ ONDO,included,221,,crypto
 ALT,included,221,,crypto
 ZETA,included,221,,crypto
 DYM,included,221,,crypto
-MAVIA,included,182,,crypto
+MAVIA,included,181,,crypto
 W,included,221,,crypto
 PANDORA,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 STRK,included,221,,crypto
@@ -136,16 +136,16 @@ TURBO,included,221,,crypto
 BRETT,included,221,,crypto
 IO,included,221,,crypto
 ZK,included,221,,crypto
-BLAST,included,202,,crypto
+BLAST,included,201,,crypto
 LISTA,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
-MEW,included,182,,crypto
+MEW,included,181,,crypto
 RENDER,included,221,,crypto
 kDOGS,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 POL,included,221,,crypto
 CATI,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 CELO,included,221,,crypto
 HMSTR,included,221,,crypto
-SCR,included,182,,crypto
+SCR,included,181,,crypto
 NEIROETH,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 kNEIRO,included,221,,crypto
 GOAT,included,221,,crypto
@@ -154,7 +154,7 @@ GRASS,included,221,,crypto
 PURR,included,221,,crypto
 PNUT,included,221,,crypto
 XLM,included,221,,crypto
-CHILLGUY,included,202,,crypto
+CHILLGUY,included,201,,crypto
 SAND,included,221,,crypto
 IOTA,included,221,,crypto
 ALGO,included,221,,crypto
@@ -165,9 +165,9 @@ VIRTUAL,included,221,,crypto
 PENGU,included,221,,crypto
 USUAL,included,221,,crypto
 FARTCOIN,included,221,,crypto
-AI16Z,included,2,,crypto
+AI16Z,included,1,,crypto
 AIXBT,included,221,,crypto
-ZEREBRO,included,182,,crypto
+ZEREBRO,included,181,,crypto
 BIO,included,221,,crypto
 GRIFFAIN,included,221,,crypto
 SPX,included,221,,crypto
@@ -180,14 +180,14 @@ VINE,included,221,,crypto
 VVV,included,221,,crypto
 JELLY,excluded,0,No data from Hyperliquid; no Yahoo Finance mapping known,crypto
 BERA,included,221,,crypto
-TST,included,202,,crypto
+TST,included,201,,crypto
 LAYER,included,221,,crypto
 IP,included,221,,crypto
-OM,included,111,,crypto
+OM,included,110,,crypto
 KAITO,included,221,,crypto
 NIL,included,221,,crypto
 PAXG,included,221,,crypto
-PROMPT,included,182,,crypto
+PROMPT,included,181,,crypto
 BABY,included,221,,crypto
 WCT,included,221,,crypto
 HYPER,included,221,,crypto
@@ -201,7 +201,7 @@ RESOLV,included,221,,crypto
 SYRUP,included,221,,crypto
 PUMP,included,221,,crypto
 PROVE,included,221,,crypto
-YZY,included,182,,crypto
+YZY,included,181,,crypto
 XPL,included,221,,crypto
 WLFI,included,221,,crypto
 LINEA,included,221,,crypto
@@ -220,37 +220,37 @@ MEGA,included,221,,crypto
 CC,included,221,,crypto
 ICP,included,221,,crypto
 AERO,included,221,,crypto
-STABLE,included,220,,crypto
-FOGO,included,185,,crypto
-LIT,included,174,,crypto
+STABLE,included,221,,crypto
+FOGO,included,186,,crypto
+LIT,included,175,,crypto
 XMR,included,221,,crypto
 AXS,included,221,,crypto
 DASH,included,221,,crypto
-SKR,included,143,,crypto
-AZTEC,included,122,,crypto
-CHIP,included,53,,crypto
-xyz:AAPL,included,205,,cross_asset
-xyz:NVDA,included,214,,cross_asset
-xyz:TSLA,included,213,,cross_asset
-xyz:MSFT,included,207,,cross_asset
-xyz:AMZN,included,208,,cross_asset
-xyz:META,included,206,,cross_asset
-xyz:GOOGL,included,208,,cross_asset
-xyz:COIN,included,201,,cross_asset
-xyz:NFLX,included,188,,cross_asset
-xyz:AMD,included,192,,cross_asset
-xyz:INTC,included,193,,cross_asset
-xyz:ORCL,included,191,,cross_asset
-xyz:MU,included,177,,cross_asset
-xyz:PLTR,included,212,,cross_asset
-xyz:MSTR,included,194,,cross_asset
-xyz:HOOD,included,200,,cross_asset
-xyz:RIVN,included,151,,cross_asset
-xyz:BABA,included,150,,cross_asset
-xyz:TSM,included,131,,cross_asset
-xyz:GOLD,included,174,,cross_asset
-xyz:SILVER,included,170,,cross_asset
-xyz:CL,included,159,,cross_asset
-xyz:NATGAS,included,144,,cross_asset
-xyz:COPPER,included,151,,cross_asset
+SKR,included,144,,crypto
+AZTEC,included,123,,crypto
+CHIP,included,54,,crypto
+xyz:AAPL,included,206,,cross_asset
+xyz:NVDA,included,215,,cross_asset
+xyz:TSLA,included,214,,cross_asset
+xyz:MSFT,included,208,,cross_asset
+xyz:AMZN,included,209,,cross_asset
+xyz:META,included,207,,cross_asset
+xyz:GOOGL,included,209,,cross_asset
+xyz:COIN,included,202,,cross_asset
+xyz:NFLX,included,189,,cross_asset
+xyz:AMD,included,193,,cross_asset
+xyz:INTC,included,194,,cross_asset
+xyz:ORCL,included,192,,cross_asset
+xyz:MU,included,178,,cross_asset
+xyz:PLTR,included,213,,cross_asset
+xyz:MSTR,included,195,,cross_asset
+xyz:HOOD,included,201,,cross_asset
+xyz:RIVN,included,152,,cross_asset
+xyz:BABA,included,151,,cross_asset
+xyz:TSM,included,132,,cross_asset
+xyz:GOLD,included,175,,cross_asset
+xyz:SILVER,included,171,,cross_asset
+xyz:CL,included,160,,cross_asset
+xyz:NATGAS,included,145,,cross_asset
+xyz:COPPER,included,152,,cross_asset
 xyz:XYZ100,included,221,,cross_asset
