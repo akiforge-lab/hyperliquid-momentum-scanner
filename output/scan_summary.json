@@ -1,5 +1,5 @@
 {
-  "scan_timestamp": "2026-06-18T07:14:10.161353+00:00",
+  "scan_timestamp": "2026-06-19T07:33:17.400862+00:00",
   "used_cache": false,
   "strict_source_mode": false,
   "universe_size": 255,
@@ -8,7 +8,7 @@
   "assets_excluded_no_data": 28,
   "assets_excluded_short_history": 3,
   "assets_computed": 224,
-  "long_candidates": 27,
+  "long_candidates": 26,
   "short_candidates": 31,
   "source_breakdown": {
     "hyperliquid": 218,
