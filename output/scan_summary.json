@@ -1,15 +1,15 @@
 {
-  "scan_timestamp": "2026-06-24T06:18:48.445473+00:00",
+  "scan_timestamp": "2026-06-25T06:30:16.817895+00:00",
   "used_cache": false,
   "strict_source_mode": false,
   "universe_size": 255,
   "assets_with_data": 227,
-  "assets_with_sufficient_history": 224,
+  "assets_with_sufficient_history": 223,
   "assets_excluded_no_data": 28,
-  "assets_excluded_short_history": 3,
-  "assets_computed": 224,
-  "long_candidates": 21,
-  "short_candidates": 43,
+  "assets_excluded_short_history": 4,
+  "assets_computed": 223,
+  "long_candidates": 22,
+  "short_candidates": 47,
   "source_breakdown": {
     "hyperliquid": 218,
     "yahoo": 9
