@@ -1,5 +1,5 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-BCH-VVV,VVV,BCH,VVV-BCH,Long VVV / Short BCH,-549.58,0.9459,-519.8478,221,1d
-RESOLV-xyz:AMD,xyz:AMD,RESOLV,xyz:AMD-RESOLV,Long xyz:AMD / Short RESOLV,-567.41,0.9555,-542.1434,204,1d
-MEGA-xyz:INTC,xyz:INTC,MEGA,xyz:INTC-MEGA,Long xyz:INTC / Short MEGA,-647.81,0.9453,-612.3806,205,1d
-RDNT-xyz:MU,xyz:MU,RDNT,xyz:MU-RDNT,Long xyz:MU / Short RDNT,-821.62,0.9283,-762.715,188,1d
+RESOLV-VVV,VVV,RESOLV,VVV-RESOLV,Long VVV / Short RESOLV,-561.93,0.9187,-516.267,221,1d
+BCH-xyz:AMD,xyz:AMD,BCH,xyz:AMD-BCH,Long xyz:AMD / Short BCH,-545.65,0.9779,-533.5909,205,1d
+MEGA-xyz:INTC,xyz:INTC,MEGA,xyz:INTC-MEGA,Long xyz:INTC / Short MEGA,-649.49,0.9463,-614.6109,206,1d
+RDNT-xyz:MU,xyz:MU,RDNT,xyz:MU-RDNT,Long xyz:MU / Short RDNT,-819.6,0.9273,-760.0335,189,1d
