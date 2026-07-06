@@ -1,5 +1,5 @@
 pair_id,long_asset,short_asset,display_pair,trade_label,slope_ann_pct,r2,momentum_score,bars_used,timeframe
-JTO-MEGA,JTO,MEGA,JTO-MEGA,Long JTO / Short MEGA,661.33,0.9171,606.502,221,1d
+JTO-MEGA,JTO,MEGA,JTO-MEGA,Long JTO / Short MEGA,664.02,0.9195,610.5664,221,1d
 DOOD-xyz:INTC,xyz:INTC,DOOD,xyz:INTC-DOOD,Long xyz:INTC / Short DOOD,-523.24,0.9892,-517.5679,205,1d
-0G-xyz:AMD,xyz:AMD,0G,xyz:AMD-0G,Long xyz:AMD / Short 0G,-531.37,0.9817,-521.6709,214,1d
-RDNT-xyz:MU,xyz:MU,RDNT,xyz:MU-RDNT,Long xyz:MU / Short RDNT,-796.5,0.9207,-733.3219,197,1d
+0G-xyz:AMD,xyz:AMD,0G,xyz:AMD-0G,Long xyz:AMD / Short 0G,-534.31,0.9833,-525.4063,215,1d
+RDNT-xyz:MU,xyz:MU,RDNT,xyz:MU-RDNT,Long xyz:MU / Short RDNT,-778.05,0.9151,-712.0311,199,1d

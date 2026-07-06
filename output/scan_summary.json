@@ -1,5 +1,5 @@
 {
-  "scan_timestamp": "2026-07-05T06:17:39.503143+00:00",
+  "scan_timestamp": "2026-07-06T06:49:47.599250+00:00",
   "used_cache": false,
   "strict_source_mode": false,
   "universe_size": 256,
@@ -9,7 +9,7 @@
   "assets_excluded_short_history": 5,
   "assets_computed": 222,
   "long_candidates": 16,
-  "short_candidates": 103,
+  "short_candidates": 102,
   "source_breakdown": {
     "hyperliquid": 218,
     "yahoo": 9
