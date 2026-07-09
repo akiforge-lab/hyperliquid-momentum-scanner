@@ -13,43 +13,22 @@ CYBER,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance 
 OGN,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 REQ,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 STG,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-FIL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-kBONK,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-USTC,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 NFTI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-JUP,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-GALA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 NTRN,no_price_data,NTRN-USD,No data from Hyperliquid or Yahoo Finance (tried symbol: NTRN-USD)
-WIF,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-ENS,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-ETC,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-UMA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-ONDO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-ALT,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 PANDORA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 PIXEL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 AI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 MYRO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-BOME,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-ETHFI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-MNT,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-MERL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-POPCAT,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 OMNI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-EIGEN,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-REZ,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-BRETT,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-BLAST,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 LISTA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-MEW,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 kDOGS,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 CATI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 NEIROETH,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 AI16Z,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 JELLY,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 LAUNCHCOIN,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-FXS,insufficient_history,,Only 38 closes (need 100)
+FXS,insufficient_history,,Only 37 closes (need 100)
 CANTO,insufficient_history,,Only 8 closes (need 100)
-OM,insufficient_history,,Only 86 closes (need 100)
-CHIP,insufficient_history,,Only 78 closes (need 100)
-GRAM,insufficient_history,,Only 7 closes (need 100)
+OM,insufficient_history,,Only 85 closes (need 100)
+CHIP,insufficient_history,,Only 79 closes (need 100)
+GRAM,insufficient_history,,Only 8 closes (need 100)
