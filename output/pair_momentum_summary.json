@@ -1,8 +1,8 @@
 {
   "pairs_computed": 50,
-  "positive_score": 12,
-  "negative_score": 38,
-  "diversified_pairs": 6,
+  "positive_score": 15,
+  "negative_score": 35,
+  "diversified_pairs": 7,
   "unique_symbols_only": true,
   "timeframe": "1d",
   "slope_window_bars": 100,
