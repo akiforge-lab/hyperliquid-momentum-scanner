@@ -13,7 +13,6 @@ CYBER,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance 
 OGN,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 REQ,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 STG,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-NEO,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 NFTI,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 NTRN,no_price_data,NTRN-USD,No data from Hyperliquid or Yahoo Finance (tried symbol: NTRN-USD)
 PANDORA,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
@@ -28,18 +27,9 @@ NEIROETH,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finan
 AI16Z,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 JELLY,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
 LAUNCHCOIN,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-RESOLV,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-SYRUP,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-PUMP,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-XPL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-STBL,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-0G,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-APEX,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-2Z,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-MON,no_price_data,hyperliquid-only,No data from Hyperliquid; no Yahoo Finance mapping known
-FXS,insufficient_history,,Only 33 closes (need 100)
+FXS,insufficient_history,,Only 32 closes (need 100)
 CANTO,insufficient_history,,Only 1 closes (need 100)
-OM,insufficient_history,,Only 81 closes (need 100)
-CHIP,insufficient_history,,Only 83 closes (need 100)
-GRAM,insufficient_history,,Only 12 closes (need 100)
-CASHCAT,insufficient_history,,Only 3 closes (need 100)
+OM,insufficient_history,,Only 80 closes (need 100)
+CHIP,insufficient_history,,Only 84 closes (need 100)
+GRAM,insufficient_history,,Only 13 closes (need 100)
+CASHCAT,insufficient_history,,Only 4 closes (need 100)
