@@ -1,5 +1,3 @@
 coin,n_closes,latest_price,slope_ann_pct,r2,momentum_score,ma100,signal,source
-LIT,209,2.2499,325.32,0.9182,298.7291,1.451056,LONG,hyperliquid
-JTO,221,0.54876,208.31,0.7132,148.5706,0.532421,LONG,hyperliquid
-HYPE,221,59.216,171.4,0.7034,120.559,55.626,LONG,hyperliquid
-xyz:AMD,221,492.61,140.44,0.7141,100.2944,449.9492,LONG,hyperliquid
+LIT,210,2.223,325.45,0.9184,298.9083,1.462027,LONG,hyperliquid
+xyz:HOOD,221,99.917,124.89,0.7145,89.2274,90.22403,LONG,hyperliquid
